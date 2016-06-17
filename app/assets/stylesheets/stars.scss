@@ -1,0 +1,139 @@
+// generate star shadows
+@function multiple-box-shadow ($number) {
+  $value: '#{random(2000)}px #{random(2000)}px #FFF';
+  @for $i from 2 through $number {
+    $value: '#{$value} , #{random(2000)}px #{random(2000)}px #FFF';
+  }
+  @return unquote($value);
+}
+
+// star animation
+@include keyframes(starAnimation) {
+  from {
+    @include transform(translateY(0px));
+  }
+  to {
+    @include transform(translateY(-2000px));
+  }
+}
+
+// sky variables
+$dark-sky: #00111e;
+$light-sky: #033d5e;
+$font-gradient: #37495b;
+
+$shadows-small: multiple-box-shadow(700);
+$shadows-medium: multiple-box-shadow(200);
+$shadows-big: multiple-box-shadow(100);
+
+// begin star field
+.sky {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  @include background-image(linear-gradient($dark-sky, $light-sky));
+}
+
+.stars {
+  height: 1px;
+  width: 1px;
+  background: transparent;
+  box-shadow: $shadows-small;
+  @include animation(starAnimation 50s linear infinite);
+}
+
+.closer-stars {
+  height: 2px;
+  width: 2px;
+  background: transparent;
+  box-shadow: $shadows-medium;
+  @include animation(starAnimation 100s linear infinite);
+}
+
+.closest-stars {
+  height: 3px;
+  width: 3px;
+  background: transparent;
+  box-shadow: $shadows-big;
+  @include animation(starAnimation 150s linear infinite);
+}
+// end star field
+
+// begin copy overlay
+.title {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div {
+    text-align: center;
+  }
+}
+
+h1,
+h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+
+span {
+  background: -webkit-linear-gradient(white, $font-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  letter-spacing: 10px;
+}
+
+h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  letter-spacing: 5px;
+}
+
+.social-icons {
+  padding-top: 20px;
+  a:hover {
+    span {
+      background: -webkit-linear-gradient(darken(white, 10%), darken($font-gradient, 10%));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+.icon {
+  color: white;
+  height: 16px;
+  padding-right: 40px;
+  font-size: 16px;
+}
+
+.icon-linkedin {
+  padding-right: 0;
+}
+
+@include media($large-screen) {
+  h1 {
+    font-size: 50px;
+  }
+  h2 {
+    letter-spacing: 10px;
+  }
+  .icon {
+    font-size: 24px;
+    padding-right: 8px;
+    padding-top: 0;
+  }
+  .social-icons {
+    padding-top: 8px;
+  }
+}
+
+//end copy overlay
