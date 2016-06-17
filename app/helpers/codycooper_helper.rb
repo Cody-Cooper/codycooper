@@ -1,0 +1,2 @@
+module CodycooperHelper
+end
