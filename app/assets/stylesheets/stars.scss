@@ -72,32 +72,31 @@ $shadows-big: multiple-box-shadow(100);
   div {
     text-align: center;
   }
-}
+  h1,
+  h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+  }
 
-h1,
-h2 {
-  color: white;
-  font-size: 24px;
-  margin: 0;
-}
+  span {
+    background: -webkit-linear-gradient(white, $font-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-span {
-  background: -webkit-linear-gradient(white, $font-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+  h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    letter-spacing: 10px;
+  }
 
-h1 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  letter-spacing: 10px;
-}
-
-h2 {
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  font-size: 16px;
-  letter-spacing: 5px;
+  h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    letter-spacing: 5px;
+  }
 }
 
 .social-icons {
@@ -123,19 +122,21 @@ h2 {
 }
 
 @include media($large-screen) {
-  h1 {
-    font-size: 50px;
-  }
-  h2 {
-    letter-spacing: 10px;
-  }
-  .icon {
-    font-size: 24px;
-    padding-right: 8px;
-    padding-top: 0;
-  }
-  .social-icons {
-    padding-top: 8px;
+  .title {
+    h1 {
+      font-size: 50px;
+    }
+    h2 {
+      letter-spacing: 10px;
+    }
+    .icon {
+      font-size: 24px;
+      padding-right: 8px;
+      padding-top: 0;
+    }
+    .social-icons {
+      padding-top: 8px;
+    }
   }
 }
 
