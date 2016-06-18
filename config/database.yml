@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: codycooper_development
+
+test:
+  <<: *default
+  database: codycooper_test
+
+production:
+  <<: *default
+  database: codycooper_production
+  username: <%= ENV['CODYCOOPER_DB_NAME'] %>
+  password: <%= ENV['CODYCOOPER_DB_PW'] %>
