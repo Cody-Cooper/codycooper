@@ -11,10 +11,15 @@ header {
     line-height: 50px;
     letter-spacing: 5px;
     display: inline-block;
-    &:hover {
-      background: -webkit-linear-gradient(darken(white, 10%), darken($font-gradient, 10%));
+    span {
+      background: -webkit-linear-gradient(white, $font-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      &:hover {
+        background: -webkit-linear-gradient(darken(white, 10%), darken($font-gradient, 10%));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
     }
   }
 }
