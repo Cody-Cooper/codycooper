@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'codycooper#index'
 
   # pages
-  get "/contact" => "contact#index"
+  match '/contact', to: 'contact#index', via: 'get'
+  resources "contacts", only: [:new, :create]
 
 end

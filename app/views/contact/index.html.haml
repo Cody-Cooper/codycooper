@@ -9,4 +9,8 @@
         %span CONTACT ME
 
 %section.contact
-  %h1 test
+  = simple_form_for @contact do |f|
+    = f.text_field :name, :required => true, :placeholder => 'John Smith'
+    = f.text_field :email, :required => true, :placeholder => 'You@example.com'
+    = f.text_area :message, :as => :text, :required => true, :size => "30x10"
+    = f.submit 'Send message'
