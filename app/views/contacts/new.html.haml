@@ -9,8 +9,10 @@
         %span CONTACT ME
 
 %section.contact
-  = simple_form_for @contact do |f|
+  = form_for @contact do |f|
     = f.text_field :name, :required => true, :placeholder => 'John Smith'
     = f.text_field :email, :required => true, :placeholder => 'You@example.com'
     = f.text_area :message, :as => :text, :required => true, :size => "30x10"
+    .hidden
+      = f.text_field :nickname, :hint => 'anti-spam force field. leave this blank!'
     = f.submit 'Send message'
