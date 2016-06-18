@@ -17,11 +17,6 @@
   }
 }
 
-// sky variables
-$dark-sky: #00111e;
-$light-sky: #033d5e;
-$font-gradient: #37495b;
-
 $shadows-small: multiple-box-shadow(700);
 $shadows-medium: multiple-box-shadow(200);
 $shadows-big: multiple-box-shadow(100);
@@ -29,9 +24,13 @@ $shadows-big: multiple-box-shadow(100);
 // begin star field
 .sky {
   display: flex;
-  height: 100vh;
-  width: 100%;
+  @include calc(height, "100vh - 50px");  width: 100%;
+  z-index: 1;
   @include background-image(linear-gradient($dark-sky, $light-sky));
+}
+
+.half-sky {
+  @include calc(height, "25vh - 50px");
 }
 
 .stars {
@@ -39,6 +38,7 @@ $shadows-big: multiple-box-shadow(100);
   width: 1px;
   background: transparent;
   box-shadow: $shadows-small;
+  z-index: 2;
   @include animation(starAnimation 50s linear infinite);
 }
 
@@ -47,6 +47,7 @@ $shadows-big: multiple-box-shadow(100);
   width: 2px;
   background: transparent;
   box-shadow: $shadows-medium;
+  z-index: 3;
   @include animation(starAnimation 100s linear infinite);
 }
 
@@ -55,6 +56,7 @@ $shadows-big: multiple-box-shadow(100);
   width: 3px;
   background: transparent;
   box-shadow: $shadows-big;
+  z-index: 4;
   @include animation(starAnimation 150s linear infinite);
 }
 // end star field
@@ -63,6 +65,7 @@ $shadows-big: multiple-box-shadow(100);
 .title {
   height: 100%;
   width: 100%;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
