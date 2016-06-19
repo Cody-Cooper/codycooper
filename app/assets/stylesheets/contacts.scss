@@ -1,6 +1,108 @@
 .contact {
-  height: 75vh;
+  height: 100%;
   position: relative;
   z-index: 10;
   @include background-image(linear-gradient(to left, #ECE9E6, #fff));
+}
+
+.contact-success {
+  text-align: center;
+}
+
+.contact-form {
+  @include outer-container(800px);
+  padding-top: 32px;
+  text-align: center;
+
+  .right,
+  .left {
+    @include span-columns(12);
+    padding: 0 16px 32px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+  }
+
+  p {
+    text-align: left;
+    margin-top: 0;
+  }
+
+  li {
+    padding-bottom: 8px;
+  }
+
+  a {
+    color: #333;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: #333;
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    color: #333;
+    padding-right: 4px;
+  }
+
+  input,
+  textarea {
+    display: block;
+    padding: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+    border: 0;
+    outline: none;
+  }
+  .submit {
+    background-color: $primary-color;
+    // font-family: 'Lato', serif;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: white;
+    margin-bottom: 0;
+    &:active {
+      background-color: darken($primary-color, 3%);
+    }
+  }
+  .contact-error {
+    background: red;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .error_notification {
+    display: block;
+    color: white;
+  }
+  .error {
+    display: block;
+    color: white;
+    font-style: italic;
+  }
+
+}
+
+@include media($large-screen) {
+  .contact {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .contact-form {
+    padding-top: 0px;
+    .left {
+      @include span-columns(6);
+      padding-top: 0;
+    }
+    .right {
+      @include span-columns(6);
+    }
+  }
 }

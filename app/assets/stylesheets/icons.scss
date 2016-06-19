@@ -24,15 +24,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-angellist:before {
+.icon-envelope:before {
     content: "\e900";
 }
-.icon-github:before {
+.icon-linkedin-square:before {
     content: "\e901";
 }
-.icon-linkedin:before {
+.icon-twitter:before {
     content: "\e902";
 }
-.icon-twitter:before {
-    content: "\54";
+.icon-github:before {
+    content: "\e903";
+}
+.icon-angellist:before {
+    content: "\e904";
 }
