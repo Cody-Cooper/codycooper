@@ -1,0 +1,29 @@
+{
+  "name": "codycooper",
+  "version": "1.0.0",
+  "private": true,
+  "description": "codycooper",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "bourbon": "^7.2.0",
+    "bourbon-neat": "^4.0.0",
+    "gatsby": "^4.10.3",
+    "gatsby-plugin-google-analytics": "^4.10.0",
+    "gatsby-plugin-manifest": "^4.10.2",
+    "gatsby-plugin-sass": "^5.10.2",
+    "gatsby-plugin-sitemap": "^5.10.2",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "sass": "^1.49.9"
+  }
+}
