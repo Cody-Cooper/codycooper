@@ -4,15 +4,12 @@ module.exports = {
     siteUrl: `https://codycooper.io`,
   },
   plugins: [
-    "gatsby-plugin-sass",
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
         // You can add multiple tracking ids and a pageview event will be fired for all of them.
         trackingIds: [
-          "GA-G-C7HL1TZX28", // Google Analytics / GA
-          "AW-CONVERSION_ID", // Google Ads / Adwords / AW
-          "DC-FLOODIGHT_ID", // Marketing Platform advertising products (Display & Video 360, Search Ads 360, and Campaign Manager)
+          "G-C7HL1TZX28", // Google Analytics / GA
         ],
         // This object gets passed directly to the gtag config command
         // This config will be shared across all trackingIds
@@ -29,18 +26,17 @@ module.exports = {
           respectDNT: true,
           // Avoids sending pageview hits from custom paths
           exclude: ["/preview/**", "/do-not-track/me/too/"],
-          // Defaults to https://www.googletagmanager.com
-          origin: "YOUR_SELF_HOSTED_ORIGIN",
         },
       },
     },
-    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/icon.png",
       },
     },
+    "gatsby-plugin-sass",
+    "gatsby-plugin-sitemap",
     "gatsby-plugin-theme-ui",
     "gatsby-theme-style-guide",
   ],
