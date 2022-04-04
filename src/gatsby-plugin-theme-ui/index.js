@@ -161,15 +161,6 @@ const theme = {
       borderColor: "text",
     },
   },
-  forms: {
-    switch: {
-      Label: {
-        span: {
-          color: "pink",
-        },
-      },
-    },
-  },
 };
 
 export default theme;
