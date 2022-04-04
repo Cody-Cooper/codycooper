@@ -6,9 +6,9 @@ module.exports = {
   plugins: [
     "gatsby-plugin-sass",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: "gatsby-plugin-google-gtag",
       options: {
-        trackingId: "G-C7HL1TZX28",
+        trackingIds: "G-C7HL1TZX28",
       },
     },
     "gatsby-plugin-sitemap",
