@@ -56,7 +56,7 @@ const NavBar = () => {
                 background: "var(--theme-ui-colors-twotone)",
                 backgroundClip: "text",
                 color: "transparent",
-                margin: ["37px 0 0 0", "33px 0 0 0", "27px 0 0 0"],
+                margin: ["37px 0 0 0", "34px 0 0 0", "28px 0 0 0"],
                 pointerEvents: "auto",
               }}
             >
