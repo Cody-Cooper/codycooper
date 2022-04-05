@@ -1,8 +1,8 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { Link } from "gatsby";
-import { FaAlignRight } from "react-icons/fa";
 import Colortoggle from "./colortoggle";
+import Hamburger from "./hamburger";
 
 const NavBar = () => {
   console.log("NavBar success");
@@ -17,29 +17,14 @@ const NavBar = () => {
           display: "flex",
           alignItems: "center",
           variant: "styles.header",
+          minHeight: "40px",
         }}
       >
         <Colortoggle />
         <div sx={{ mx: "auto" }} />
-        <Link
-          to="#blog"
-          sx={{
-            variant: "styles.navlink",
-            p: 2,
-          }}
-        >
-          Blog
-        </Link>
-        <Link
-          to="#about"
-          sx={{
-            variant: "styles.navlink",
-            p: 2,
-          }}
-        >
-          About
-        </Link>
-        <FaAlignRight sx={{ display: "none" }} />
+        <Hamburger />
+
+        {/* Center 'logo' */}
         <section
           sx={{
             position: "absolute",
@@ -52,7 +37,7 @@ const NavBar = () => {
             <h1
               sx={{
                 fontSize: ["20px", "40px", "80px"],
-                display: "inline-block",
+                display: ["none", "none", "inline-block"],
                 background: "var(--theme-ui-colors-twotone)",
                 backgroundClip: "text",
                 color: "transparent",
@@ -61,6 +46,22 @@ const NavBar = () => {
               }}
             >
               codycooper
+            </h1>
+          </Link>
+          {/* Center 'logo' mobile */}
+          <Link to="/" sx={{ textDecoration: "none" }}>
+            <h1
+              sx={{
+                fontSize: ["40px", "80px", "none"],
+                display: ["inline-block", "inline-block", "none"],
+                background: "var(--theme-ui-colors-twotone)",
+                backgroundClip: "text",
+                color: "transparent",
+                margin: ["34px 0 0 0", "28px 0 0 0", "28px 0 0 0"],
+                pointerEvents: "auto",
+              }}
+            >
+              CC
             </h1>
           </Link>
         </section>
