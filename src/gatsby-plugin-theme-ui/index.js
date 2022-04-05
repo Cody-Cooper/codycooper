@@ -1,8 +1,8 @@
 const theme = {
   config: {
     useCustomProperties: true,
+    useLocalStorage: true,
     initialColorMode: "light",
-    useLocalStorage: false,
   },
   breakpoints: [20, 40, 52, 64].map((n) => n + "em"),
   colors: {
