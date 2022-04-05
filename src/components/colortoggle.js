@@ -10,12 +10,17 @@ const ColorToggle = (props) => {
     console.log(colorMode);
   }
 
-  //buggy, needs work. want it to check once on page load and be done - also doesn't carry from page to page if clicking menu links.
   function checkColorMode(checked) {
-    var elm = document.getElementById("switch");
-    if (colorMode !== "light") {
-      elm.click();
-      console.log("Dark mode detected on page load");
+    if (typeof document !== `undefined`) {
+      {
+        const elm = document.getElementById("switch");
+        if (colorMode !== "light") {
+          elm.click();
+          console.log("Dark mode detected on page load");
+        }
+      }
+    } else {
+      console.log("document is undefined.");
     }
   }
 
