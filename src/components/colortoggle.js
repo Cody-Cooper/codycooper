@@ -1,30 +1,33 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
+import { useEffect } from "react";
+
 import { useColorMode } from "theme-ui";
 import { FaMoon } from "react-icons/fa";
 
+var initialColorCheckExecuted = false;
+
 const ColorToggle = (props) => {
-  const [colorMode, setColorMode] = useColorMode();
   function toggleDarkMode() {
     setColorMode(colorMode === "light" ? "dark" : "light");
-    console.log(colorMode);
   }
 
-  function checkColorMode(checked) {
-    if (typeof document !== `undefined`) {
-      {
-        const elm = document.getElementById("switch");
-        if (colorMode !== "light") {
-          elm.click();
-          console.log("Dark mode detected on page load");
-        }
+  const [colorMode, setColorMode] = useColorMode();
+
+  function CheckColorMode() {
+    useEffect(() => {
+      const elm = document.getElementById("switch");
+      if (colorMode === "dark") {
+        console.log(`Dark mode detected on page load: toggle set`);
+        elm.checked = true;
+        initialColorCheckExecuted = true;
       }
-    } else {
-      console.log("document is undefined.");
-    }
+    });
   }
 
-  checkColorMode();
+  if (!initialColorCheckExecuted) {
+    CheckColorMode();
+  }
 
   return (
     <div
@@ -53,7 +56,7 @@ const ColorToggle = (props) => {
         }}
       />
       <label
-        for="switch"
+        htmlFor="switch"
         sx={{
           cursor: "pointer",
           textIndent: "-9999px",
