@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 import { Helmet } from "react-helmet";
-import { Link, withPrefix } from "gatsby";
+import { withPrefix } from "gatsby";
 
 const Hamburger = () => {
   return (
@@ -90,24 +90,16 @@ const Hamburger = () => {
           }}
         >
           <li>
-            <a href="#home" className="mobile-nav-link">
-              home
-            </a>
+            <a href="#home">home</a>
           </li>
           <li>
-            <a href="#about" className="mobile-nav-link">
-              about
-            </a>
+            <a href="/about">about</a>
           </li>
           <li>
-            <a href="#blog" className="mobile-nav-link">
-              blog
-            </a>
+            <a href="#blog">blog</a>
           </li>
           <li>
-            <a href="#contact" className="mobile-nav-link">
-              contact
-            </a>
+            <a href="#contact">contact</a>
           </li>
         </ul>
       </nav>

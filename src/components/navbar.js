@@ -18,6 +18,12 @@ const NavBar = () => {
           alignItems: "center",
           variant: "styles.header",
           minHeight: "40px",
+          "a, button, label": {
+            WebkitTapHighlightColor: "transparent",
+          },
+          "a:hover": {
+            filter: "contrast(50%)",
+          },
         }}
       >
         <Colortoggle />
@@ -33,7 +39,13 @@ const NavBar = () => {
             pointerEvents: "none",
           }}
         >
-          <Link to="/" sx={{ textDecoration: "none" }}>
+          <Link
+            to="/"
+            sx={{
+              textDecoration: "none",
+              WebkitTapHighlightColor: "transparent",
+            }}
+          >
             <h1
               sx={{
                 fontSize: ["20px", "40px", "80px"],
