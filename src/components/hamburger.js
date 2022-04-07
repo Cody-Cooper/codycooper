@@ -90,7 +90,7 @@ const Hamburger = () => {
           }}
         >
           <li>
-            <a href="#home">home</a>
+            <a href="/home">home</a>
           </li>
           <li>
             <a href="/about">about</a>
