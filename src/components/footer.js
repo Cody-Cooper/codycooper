@@ -6,12 +6,11 @@ const Footer = () => {
   return (
     <footer
       sx={{
-        display: "flex",
+        display:
+          /* "flex", */ "none" /*temporarily hiding footer until i have good enough copy/links to want to put it on*/,
         alignItems: "center",
         justifyContent: "center",
         variant: "styles.header",
-        // temporarily hide the footer
-        display: "none",
       }}
     >
       Footer
