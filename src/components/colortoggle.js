@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useColorMode } from "theme-ui";
 import { FaMoon } from "react-icons/fa";
 
-var initialColorCheckExecuted = false;
-
 const ColorToggle = (props) => {
   function toggleDarkMode() {
     setColorMode(colorMode === "light" ? "dark" : "light");
@@ -16,18 +14,18 @@ const ColorToggle = (props) => {
 
   function CheckColorMode() {
     useEffect(() => {
+      var localColorMode = localStorage.getItem("theme-ui-color-mode");
       const elm = document.getElementById("switch");
-      if (colorMode === "dark") {
-        console.log(`Dark mode detected on page load: toggle set`);
+      if (localColorMode === "dark") {
         elm.checked = true;
-        initialColorCheckExecuted = true;
+        console.log(`Dark mode detected on page load: toggle set`);
+      } else {
+        console.log("Light mode detected on page load.");
       }
-    });
+    }, []);
   }
 
-  if (!initialColorCheckExecuted) {
-    CheckColorMode();
-  }
+  CheckColorMode();
 
   return (
     <div
@@ -75,10 +73,10 @@ const ColorToggle = (props) => {
             height: "15px",
             background: "var(--theme-ui-colors-primary)",
             borderRadius: "90px",
-            transition: "0.3s",
+            transition: "0.1s",
           },
           "&:active:after": {
-            width: "30px",
+            width: "20px",
           },
         }}
       >
