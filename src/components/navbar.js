@@ -10,6 +10,7 @@ const NavBar = () => {
     <header
       sx={{
         backgroundColor: "var(--theme-ui-colors-primary)",
+        marginBottom: "50px",
       }}
     >
       <nav

@@ -16,8 +16,9 @@ const Layout = ({ children }) => {
       <NavBar />
       <main
         sx={{
-          width: "100%",
+          maxWidth: "100%",
           flex: "1 1 auto",
+          margin: ["50px 15%", "50px 15%", "50px 25%", "50px 25%"],
         }}
       >
         {children}
