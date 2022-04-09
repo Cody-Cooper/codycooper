@@ -18,8 +18,8 @@ const strapiConfig = {
           },
         },
       },
+      queryLimit: 5000,
     },
-    queryLimit: 5000,
     {
       singularName: "author",
     },
