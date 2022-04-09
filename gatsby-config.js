@@ -11,7 +11,6 @@ const strapiConfig = {
       queryParams: {
         publicationState:
           process.env.GATSBY_IS_PREVIEW === "true" ? "preview" : "live",
-        queryLimit: 5000,
         populate: {
           cover: "*",
           blocks: {
@@ -20,6 +19,7 @@ const strapiConfig = {
         },
       },
     },
+    queryLimit: 5000,
     {
       singularName: "author",
     },
