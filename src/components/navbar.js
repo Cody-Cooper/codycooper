@@ -1,35 +1,55 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
+import { useLocation } from "@reach/router";
+
 import Colortoggle from "./colortoggle";
 import Hamburger from "./hamburger";
 
 const NavBar = () => {
-  console.log("NavBar success");
+  var rootPage = useLocation().pathname === "/" ? true : false;
+  var navBarSizes = getNavBarSizes();
 
-  function isRootPage() {
-    if (typeof window !== "undefined") {
-      return /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
+  function getNavBarSizes() {
+    if (rootPage) {
+      return ["large-navbar", "root-header"];
+    } else {
+      return ["small-navbar", "not-root-header"];
     }
   }
 
-  var rootPage = isRootPage();
-
-  console.log(rootPage);
+  console.log("Is user currently on root page? " + rootPage);
+  console.log("NavBar success");
 
   return (
     <header
       sx={{
         backgroundColor: "var(--theme-ui-colors-primary)",
         marginBottom: "50px",
-      }}
-    >
-      <nav
-        sx={{
+
+        ".large-navbar": {
+          display: "flex",
+          alignItems: "center",
+          height: "50vh",
+        },
+
+        ".small-navbar": {
           display: "flex",
           alignItems: "center",
           variant: "styles.header",
-          minHeight: "40px",
-          height: rootPage ? "50vh" : "40px",
+          height: "40px",
+        },
+
+        ".root-header": {
+          top: ["calc(50% - 78px)", "calc(50% - 78px)", "calc(50% - 46px)"],
+        },
+        ".not-root-header": {
+          top: "-6px",
+        },
+      }}
+    >
+      <nav
+        className={navBarSizes[0]}
+        sx={{
           "a, button, label": {
             WebkitTapHighlightColor: "transparent",
           },
@@ -44,14 +64,12 @@ const NavBar = () => {
 
         {/* Center 'logo' */}
         <section
+          className={navBarSizes[1]}
           sx={{
             position: "absolute",
             width: "100%",
             textAlign: "center",
             pointerEvents: "none",
-            top: rootPage
-              ? ["calc(50% - 78px)", "calc(50% - 78px)", "calc(50% - 46px)"]
-              : "-6px",
           }}
         >
           <h1
