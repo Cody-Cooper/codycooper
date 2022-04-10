@@ -7,7 +7,7 @@ const NavBar = () => {
   console.log("NavBar success");
 
   function isRootPage() {
-    if (typeof window !== "undefined") {
+    if (typeof window === "undefined") {
       return /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
     }
   }
@@ -60,7 +60,7 @@ const NavBar = () => {
               fontSize: "80px",
               lineHeight: "1",
               m: 0,
-              color: "var(--theme-ui-colors-secondary)",
+              color: "#E4E6EB",
               mixBlendMode: "difference",
               pointerEvents: "auto",
             }}
@@ -76,7 +76,7 @@ const NavBar = () => {
                   fontSize: "80px",
                   lineHeight: "0.8",
                   m: 0,
-                  color: "var(--theme-ui-colors-secondary)",
+                  color: "#E4E6EB",
                   mixBlendMode: "difference",
                   pointerEvents: "auto",
                 }}
@@ -93,7 +93,7 @@ const NavBar = () => {
                 fontSize: "80px",
                 lineHeight: "1",
                 m: 0,
-                color: "var(--theme-ui-colors-secondary)",
+                color: "#E4E6EB",
                 mixBlendMode: "difference",
                 pointerEvents: "auto",
               }}
