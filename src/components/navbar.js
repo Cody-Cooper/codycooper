@@ -27,20 +27,13 @@ const NavBar = () => {
         marginBottom: "50px",
 
         ".large-navbar": {
-          display: "flex",
-          alignItems: "center",
           height: "50vh",
         },
-
         ".small-navbar": {
-          display: "flex",
-          alignItems: "center",
-          variant: "styles.header",
           height: "40px",
         },
-
         ".root-header": {
-          top: ["calc(50% - 78px)", "calc(50% - 78px)", "calc(50% - 46px)"],
+          top: ["calc(50% - 70px)", "calc(50% - 70px)", "calc(50% - 46px)"],
         },
         ".not-root-header": {
           top: "-6px",
@@ -50,6 +43,8 @@ const NavBar = () => {
       <nav
         className={navBarSizes[0]}
         sx={{
+          display: "flex",
+          alignItems: "center",
           "a, button, label": {
             WebkitTapHighlightColor: "transparent",
           },
@@ -92,10 +87,11 @@ const NavBar = () => {
                 sx={{
                   display: ["inline-block", "inline-block", "none"],
                   fontSize: "80px",
-                  lineHeight: "0.8",
+                  lineHeight: "1.1",
                   m: 0,
                   color: "#E4E6EB",
                   mixBlendMode: "difference",
+                  marginBottom: "8px",
                   pointerEvents: "auto",
                 }}
               >
@@ -109,7 +105,7 @@ const NavBar = () => {
               sx={{
                 display: ["inline-block", "inline-block", "none"],
                 fontSize: "80px",
-                lineHeight: "1",
+                lineHeight: "1.1",
                 m: 0,
                 color: "#E4E6EB",
                 mixBlendMode: "difference",
