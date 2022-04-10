@@ -1,16 +1,20 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
-import { Link } from "gatsby";
 import Colortoggle from "./colortoggle";
 import Hamburger from "./hamburger";
 
 const NavBar = () => {
   console.log("NavBar success");
-  var is_root = /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
 
-  is_root
-    ? console.log("user is on root page")
-    : console.log("user is not on root page");
+  function isRootPage() {
+    if (typeof window !== "undefined") {
+      return /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
+    }
+  }
+
+  var rootPage = isRootPage();
+
+  console.log(rootPage);
 
   return (
     <header
@@ -25,7 +29,7 @@ const NavBar = () => {
           alignItems: "center",
           variant: "styles.header",
           minHeight: "40px",
-          height: is_root ? "50vh" : "40px",
+          height: rootPage ? "50vh" : "40px",
           "a, button, label": {
             WebkitTapHighlightColor: "transparent",
           },
@@ -45,7 +49,7 @@ const NavBar = () => {
             width: "100%",
             textAlign: "center",
             pointerEvents: "none",
-            top: is_root
+            top: rootPage
               ? ["calc(50% - 78px)", "calc(50% - 78px)", "calc(50% - 46px)"]
               : "-6px",
           }}
@@ -64,7 +68,7 @@ const NavBar = () => {
             codycooper
           </h1>
           {/* Center 'logo' mobile */}
-          {is_root ? (
+          {rootPage ? (
             <div sx={{ m: "0 15%" }}>
               <h1
                 sx={{
@@ -98,7 +102,7 @@ const NavBar = () => {
             </h1>
           )}
 
-          {is_root ? (
+          {rootPage ? (
             <h2 sx={{ m: "0px" }}>infosec & design & development</h2>
           ) : null}
         </section>
