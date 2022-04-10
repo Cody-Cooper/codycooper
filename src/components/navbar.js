@@ -7,7 +7,7 @@ const NavBar = () => {
   console.log("NavBar success");
 
   function isRootPage() {
-    if (typeof window === "undefined") {
+    if (typeof window !== "undefined") {
       return /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
     }
   }
