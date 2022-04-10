@@ -29,6 +29,14 @@ const AboutPage = () => {
   return (
     <Layout>
       <Seo seo={seo} />
+      <h1
+        sx={{
+          fontSize: 5,
+        }}
+      >
+        {" "}
+        {title}{" "}
+      </h1>
       <BlocksRenderer blocks={blocks} />
     </Layout>
   );
