@@ -14,8 +14,8 @@ const theme = {
     highlight: "#9f9f9f",
     gray: "#6c6c6c",
     accent: "#3f3f3f",
-    twotone:
-      "linear-gradient(180deg, rgba(228,230,235,1) 0%, rgba(228,230,235,1) 55%, rgba(18,18,18,1) 55%, rgba(18,18,18,1) 100%)",
+    filter: "invert(1)",
+    counterFilter: "invert(0)",
     modes: {
       dark: {
         text: "#E4E6EB",
@@ -26,8 +26,8 @@ const theme = {
         highlight: "#3c3c3c",
         gray: "#999",
         accent: "#e0e0e0",
-        twotone:
-          "linear-gradient(180deg, rgba(18,18,18,1) 0%, rgba(18,18,18,1) 55%, rgba(228,230,235,1) 55%, rgba(228,230,235,1) 100%)",
+        filter: "invert(0)",
+        counterFilter: "invert(1)",
       },
     },
   },

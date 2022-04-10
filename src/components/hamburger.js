@@ -14,6 +14,11 @@ const Hamburger = () => {
         id="hamburger"
         sx={{
           zIndex: "100",
+          position: "fixed",
+          top: "3px",
+          right: "0",
+          mixBlendMode: "difference",
+          filter: "var(--theme-ui-colors-filter)",
           "&.active ul": {
             visibility: "visible",
             pointerEvents: "initial",
@@ -41,14 +46,14 @@ const Hamburger = () => {
         >
           <span
             sx={{
-              background: "var(--theme-ui-colors-secondary)",
+              background: "var(--theme-ui-colors-primary)",
               display: "block",
               height: "3px",
               transition: "transform 0.3s",
               "&:before, &:after": {
                 width: "100%",
                 height: "3px",
-                background: "var(--theme-ui-colors-secondary)",
+                background: "var(--theme-ui-colors-primary)",
                 content: "''",
                 display: "block",
                 left: "0",
@@ -81,6 +86,7 @@ const Hamburger = () => {
               writingMode: "vertical-lr",
               a: {
                 color: "var(--theme-ui-colors-primary)",
+                filter: "var(--theme-ui-colors-counterfilter)",
                 textDecoration: "none",
                 "&:visited": {
                   color: "var(--theme-ui-colors-primary)",
@@ -90,7 +96,7 @@ const Hamburger = () => {
           }}
         >
           <li>
-            <a href="/home">home</a>
+            <a href="/">home</a>
           </li>
           <li>
             <a href="/about">about</a>

@@ -6,6 +6,12 @@ import Hamburger from "./hamburger";
 
 const NavBar = () => {
   console.log("NavBar success");
+  var is_root = /^\/(?:|index\.aspx?)$/i.test(window.location.pathname);
+
+  is_root
+    ? console.log("user is on root page")
+    : console.log("user is not on root page");
+
   return (
     <header
       sx={{
@@ -19,6 +25,7 @@ const NavBar = () => {
           alignItems: "center",
           variant: "styles.header",
           minHeight: "40px",
+          height: is_root ? "50vh" : "40px",
           "a, button, label": {
             WebkitTapHighlightColor: "transparent",
           },
@@ -38,45 +45,62 @@ const NavBar = () => {
             width: "100%",
             textAlign: "center",
             pointerEvents: "none",
+            top: is_root
+              ? ["calc(50% - 78px)", "calc(50% - 78px)", "calc(50% - 46px)"]
+              : "-6px",
           }}
         >
-          <Link
-            to="/"
+          <h1
             sx={{
-              textDecoration: "none",
-              WebkitTapHighlightColor: "transparent",
+              display: ["none", "none", "inline-block"],
+              fontSize: "80px",
+              lineHeight: "1",
+              m: 0,
+              color: "var(--theme-ui-colors-secondary)",
+              mixBlendMode: "difference",
+              pointerEvents: "auto",
             }}
           >
-            <h1
-              sx={{
-                fontSize: "80px",
-                display: ["none", "none", "inline-block"],
-                background: "var(--theme-ui-colors-twotone)",
-                backgroundClip: "text",
-                color: "transparent",
-                margin: "28px 0 0 0",
-                pointerEvents: "auto",
-              }}
-            >
-              codycooper
-            </h1>
-          </Link>
+            codycooper
+          </h1>
           {/* Center 'logo' mobile */}
-          <Link to="/" sx={{ textDecoration: "none" }}>
+          {is_root ? (
+            <div sx={{ m: "0 15%" }}>
+              <h1
+                sx={{
+                  display: ["inline-block", "inline-block", "none"],
+                  fontSize: "80px",
+                  lineHeight: "0.8",
+                  m: 0,
+                  color: "var(--theme-ui-colors-secondary)",
+                  mixBlendMode: "difference",
+                  pointerEvents: "auto",
+                }}
+              >
+                cody
+                <br />
+                cooper
+              </h1>
+            </div>
+          ) : (
             <h1
               sx={{
-                fontSize: "80px",
                 display: ["inline-block", "inline-block", "none"],
-                background: "var(--theme-ui-colors-twotone)",
-                backgroundClip: "text",
-                color: "transparent",
-                margin: "28px 0 0 0",
+                fontSize: "80px",
+                lineHeight: "1",
+                m: 0,
+                color: "var(--theme-ui-colors-secondary)",
+                mixBlendMode: "difference",
                 pointerEvents: "auto",
               }}
             >
               cc
             </h1>
-          </Link>
+          )}
+
+          {is_root ? (
+            <h2 sx={{ m: "0px" }}>infosec & design & development</h2>
+          ) : null}
         </section>
       </nav>
     </header>

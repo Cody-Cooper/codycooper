@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        minHeight: "200vh",
       }}
     >
       <NavBar />
