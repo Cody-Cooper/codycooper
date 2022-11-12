@@ -1,9 +1,7 @@
-const theme = {
-  config: {
-    useCustomProperties: true,
-    useLocalStorage: true,
-    initialColorMode: "light",
-  },
+export default {
+  useCustomProperties: true,
+  useLocalStorage: true,
+  initialColorMode: "light",
   breakpoints: [20, 40, 52, 64].map((n) => n + "em"),
   colors: {
     text: "#000",
@@ -162,5 +160,3 @@ const theme = {
     },
   },
 };
-
-export default theme;

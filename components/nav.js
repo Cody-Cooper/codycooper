@@ -1,12 +1,11 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
-import { useLocation } from "@reach/router";
+/** @jsxImportSource theme-ui */
+import { useRouter } from "next/router";
+import Hamburger from "./elements/hamburger";
+import ColorToggle from "./elements/themetoggle";
 
-import Colortoggle from "./colortoggle";
-import Hamburger from "./hamburger";
-
-const NavBar = () => {
-  var rootPage = useLocation().pathname === "/" ? true : false;
+const NavBar = (props) => {
+  const router = useRouter();
+  var rootPage = router.pathname === "/" ? true : false;
   var navBarSizes = getNavBarSizes();
 
   function getNavBarSizes() {
@@ -53,7 +52,7 @@ const NavBar = () => {
           },
         }}
       >
-        <Colortoggle />
+        <ColorToggle />
         <div sx={{ mx: "auto" }} />
         <Hamburger />
 
@@ -116,9 +115,7 @@ const NavBar = () => {
             </h1>
           )}
 
-          {rootPage ? (
-            <h2 sx={{ m: "0px" }}>infosec & design & development</h2>
-          ) : null}
+          {rootPage ? <h2 sx={{ m: "0px" }}>ctf writeups and more</h2> : null}
         </section>
       </nav>
     </header>

@@ -1,7 +1,5 @@
-/** @jsx jsx */
-import { jsx } from "theme-ui";
+/** @jsxImportSource theme-ui */
 import { useEffect } from "react";
-
 import { useColorMode } from "theme-ui";
 import { FaMoon, FaSun } from "react-icons/fa";
 
