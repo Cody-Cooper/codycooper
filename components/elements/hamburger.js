@@ -1,5 +1,6 @@
 /** @jsxImportSource theme-ui */
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet"
+import Link from "next/link"
 
 const Hamburger = () => (
   /* mobile menu */
@@ -93,20 +94,20 @@ const Hamburger = () => (
         }}
       >
         <li>
-          <a href="/">home</a>
+          <Link href="/">home</Link>
         </li>
         <li>
-          <a href="/about">about</a>
+          <Link href="/about">about</Link>
         </li>
         <li>
-          <a href="#blog">blog</a>
+          <Link href="#blog">blog</Link>
         </li>
         <li>
-          <a href="#contact">contact</a>
+          <Link href="#contact">contact</Link>
         </li>
       </ul>
     </nav>
   </section>
-);
+)
 
-export default Hamburger;
+export default Hamburger
