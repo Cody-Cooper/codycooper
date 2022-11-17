@@ -1,33 +1,31 @@
-/** @jsxImportSource theme-ui */
-import { ThemeProvider } from "theme-ui";
-import theme from "../styles/theme";
-import NavBar from "../components/nav";
-import Footer from "../components/footer";
+import '@/css/tailwind.css'
+import '@/css/prism.css'
+import 'katex/dist/katex.css'
 
-function MyApp({ Component, pageProps }) {
+import '@fontsource/inter/variable-full.css'
+
+import { ThemeProvider } from 'next-themes'
+import Head from 'next/head'
+
+import siteMetadata from '@/data/siteMetadata'
+import Analytics from '@/components/analytics'
+import LayoutWrapper from '@/components/LayoutWrapper'
+import { ClientReload } from '@/components/ClientReload'
+
+const isDevelopment = process.env.NODE_ENV === 'development'
+const isSocket = process.env.SOCKET
+
+export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider theme={theme}>
-      <section
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          minHeight: "200vh",
-        }}
-      >
-        <NavBar />
-        <main
-          sx={{
-            maxWidth: "100%",
-            flex: "1 1 auto",
-            margin: ["50px 15%", "50px 15%", "50px 25%", "50px 25%"],
-          }}
-        >
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-      </section>
+    <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+      <Head>
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+      </Head>
+      {isDevelopment && isSocket && <ClientReload />}
+      <Analytics />
+      <LayoutWrapper>
+        <Component {...pageProps} />
+      </LayoutWrapper>
     </ThemeProvider>
-  );
+  )
 }
-
-export default MyApp;
