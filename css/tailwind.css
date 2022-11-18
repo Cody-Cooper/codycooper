@@ -1,4 +1,4 @@
-#hamburger.active ul{
+#hamburger.active ul {
   visibility: visible;
   pointer-events: initial;
   transition-delay: 0.2s;
@@ -46,7 +46,7 @@
 
 #nav-icon span {
   display: block;
-  height:3px;
+  height: 3px;
   transition: transform 0.3s;
 }
 
@@ -70,13 +70,6 @@
   top: 5px;
 }
 
-
-/* temp */
-html {
-  height: 500%;
-}
-
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -90,7 +83,7 @@ html {
 }
 
 .footnotes {
-  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
 .csl-entry {
