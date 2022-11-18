@@ -11,29 +11,19 @@ const Hamburger = () => {
       </Helmet>
       <div id="hamburger" className="fixed top-0.5 right-0.5 z-50 mix-blend-difference">
         <button id="nav-icon">
-          <span class="bg-neutral-100 before:bg-neutral-100 after:bg-neutral-100"></span>
+          <span className="bg-neutral-100 before:bg-neutral-100 after:bg-neutral-100"></span>
         </button>
+
         <ul>
-          <li>
-            <Link href="/" class="text-neutral-100">
-              home
-            </Link>
-          </li>
-          <li>
-            <Link href="/about" class="text-neutral-100">
-              about
-            </Link>
-          </li>
-          <li>
-            <Link href="#blog" class="text-neutral-100">
-              blog
-            </Link>
-          </li>
-          <li>
-            <Link href="#contact" class="text-neutral-100">
-              contact
-            </Link>
-          </li>
+          <>
+            {headerNavLinks.map((link) => (
+              <li key={link.title}>
+                <Link href={link.href} className="text-neutral-100 hover:text-neutral-300">
+                  {link.title}
+                </Link>
+              </li>
+            ))}
+          </>
         </ul>
       </div>
     </section>
