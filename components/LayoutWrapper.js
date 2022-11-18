@@ -1,9 +1,4 @@
-import siteMetadata from '@/data/siteMetadata'
-import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
-import Link from './Link'
 import SectionContainer from './SectionContainer'
-import Footer from './Footer'
 import Hamburger from './Hamburger'
 import ThemeSwitch from './ThemeSwitch'
 import { useRouter } from 'next/router'
@@ -26,7 +21,7 @@ const LayoutWrapper = ({ children }) => {
 
   return (
     <SectionContainer>
-      <header class="bg-stone-900 dark:bg-stone-200">
+      <header clasName={'bg-stone-900 dark:bg-stone-200'}>
         <nav className={navBarSizes[0] + ' flex items-center justify-between'}>
           <ThemeSwitch />
           <Hamburger />
