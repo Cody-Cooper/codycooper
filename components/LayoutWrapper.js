@@ -21,7 +21,7 @@ const LayoutWrapper = ({ children }) => {
 
   return (
     <SectionContainer>
-      <header clasName={'bg-stone-900 dark:bg-stone-200'}>
+      <header className={'bg-stone-900 dark:bg-stone-200'}>
         <nav className={navBarSizes[0] + ' flex items-center justify-between'}>
           <ThemeSwitch />
           <Hamburger />
