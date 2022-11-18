@@ -10,7 +10,8 @@
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
     "prepare": "husky install",
-    "vercel": "vercel"
+    "vercel": "vercel",
+    "prod": "vercel --prod"
   },
   "dependencies": {
     "@fontsource/inter": "4.5.2",
