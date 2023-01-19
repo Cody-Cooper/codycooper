@@ -9,7 +9,7 @@ const UmamiScript = () => {
         async
         defer
         data-website-id={siteMetadata.analytics.umamiWebsiteId}
-        src="http://71.114.39.95:3030/umami.js" // Replace with your umami instance
+        src="https://umami.coopers.wtf/umami.js" // Replace with your umami instance
       />
     </>
   )
