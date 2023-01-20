@@ -8,7 +8,7 @@ images: []
 canonicalUrl: flare-vm-part-1-creating-a-windows-10-virtual-machine
 ---
 
-Reverse engineering malware is a tricky task that requires a dedicated and secure environment. One of the most popular and effective tools for this purpose is Flare VM, a fully configured Windows 10 virtual machine developed by Mandiant. This is part one of two, covering the preparation needed to get going with Flare VM. In this guide, I'll show you how to create a Windows 10 ISO and how to use that ISO to create a VM in VirtualBox.
+Reverse engineering malware is a complex task that requires a secure and dedicated environment. A very effective tool for this purpose is Flare VM, a fully configured Windows 10 virtual machine developed by Mandiant. This guide is part one of two and covers the preparation needed to get started with Flare VM. Specifically, in this guide I will show you how to create a Windows 10 ISO and how to use that ISO to create a virtual machine in VirtualBox.
 
 ## Required downloads:
 
@@ -18,15 +18,15 @@ Reverse engineering malware is a tricky task that requires a dedicated and secur
 
 ## Creating a Windows 10 ISO
 
-The first step in setting up Flare VM is to create a Windows 10 ISO. To do this, you will need to download the Windows 10 media creation software from the [Microsoft website](https://www.microsoft.com/en-us/software-download/windows10). Use this software to create your Windows 10 ISO.
+The first step in setting up Flare VM is to create a Windows 10 ISO. To do this, you will need to download the Windows 10 media creation software from the [Microsoft website](https://www.microsoft.com/en-us/software-download/windows10). Then, use this software to create your Windows 10 ISO by following these steps:
 
-1. Choose "Create installation media (USB flash drive, DVD, or ISO file) for another PC".
+1. Select "Create installation media (USB flash drive, DVD, or ISO file) for another PC".
 2. When prompted for the edition and architecture of Windows 10, ensure that you select "Windows 10" as the edition and "64-bit (x64)" as the architecture.
 3. Finally, select "ISO file" as the output format for the installation media. This will create an ISO file that can be used to install Windows 10 on a virtual machine.
 
 ## Create a Windows 10 VM Instance
 
-Now that you've successfully created a Windows 10 ISO, it's time to use it to install Windows 10 on a virtual machine in VirtualBox. This process involves creating a new virtual machine in VirtualBox and configuring it to use the ISO file that you have created as the installation media.
+Now that you've successfully created a Windows 10 ISO, it's time to use it to install Windows 10 on a virtual machine in VirtualBox. This process involves creating a new virtual machine in VirtualBox using the ISO you made previously.
 
 #### Step 1:
 
@@ -42,7 +42,7 @@ In VirtualBox, select "New" to create a new virtual machine.
   - For the size of your VDI, assign at least 70-80GB of storage to the virtual machine. This will ensure that the virtual machine has enough storage to install Windows 10, Flare VM, and any additional software you may want to install.
 - Click "Create" to finish creating the new virtual machine.
 
-**NOTE:** I would NOT reccommend using only 2gb of ram. If you selected this during setup and would like to change it, just right click your VM in the left hand sidebar and select "Settings". From there, go to the "System" tab, and change the Base Memory to be the amount you would like. I chose 6000MB, which is 6GB. While you're here, I would also reccomend going to the "Processor" tab at the top and give your machine 3-5 cores. All of this will ensure your machine runs smoothly. I would also recommend [disabling hyper-v](https://www.wintips.org/fix-virtualbox-running-very-slow-in-windows-10-11/) on your host machine if you haven't already, or the VM will be insanely slow and basically unusable.
+**NOTE:** I would NOT reccommend using only 2gb of ram. If you selected this during setup and would like to change it, just right click your VM in the left hand sidebar and select "Settings". From there, go to the "System" tab, and change the Base Memory to be the amount you would like. I chose 6000MB, which is 6GB. While you're here, I would also reccomend going to the "Processor" tab at the top and give your machine 3-5 cores. All of this will ensure your machine runs smoothly. I would also strongly recommend [disabling hyper-v](https://www.wintips.org/fix-virtualbox-running-very-slow-in-windows-10-11/) on your host machine if you haven't already, or the VM will be insanely slow and basically unusable.
 
 #### Step 2:
 
@@ -58,7 +58,7 @@ Start your VM by double-clicking the VM in your left sidebar on VirtualBox.
 
 Follow the Windows installation prompts. You can select "I don't have a product key" - it should be just fine for your purposes. The version you pick is ultimately your choice, but I personally chose "Windows 10 Home N". This version won't have certain media-related apps and features that I don't need to reverse engineer stuff.
 
-When prompted, select "Custom: Install Windows Only (advanced)", as you don't have any files from a prior installation you want to move over to this new windows installation. Now you just select the disk drive you made earlier for this VM and hit next. Select your language and keyboard layout, then stare at the pretty blue screen while the dots spin until it's done. Select "Offline account" in the bottom left when asked to sign in, and "limited experience" also in the bottom left when they try changing your mind. When creating your username, Mandiant recommends using a name without spaces. Chose some security questions, then turn off all the ~~spyware~~ windows privacy settings. Keep telling Microsoft no thank you until you get greeted with the sweet sweet "Hi, we're getting everything ready for you" screen. Victory at last!
+When prompted, select "Custom: Install Windows Only (advanced)", as you don't have any files from a prior installation you want to move over to this new windows installation. Now you just select the disk drive you made earlier for this VM and hit next. Select your language and keyboard layout, then stare at the pretty blue screen while the dots spin until it's done. Select "Offline account" in the bottom left when asked to sign in, and "limited experience" also in the bottom left when they try changing your mind. When creating your username, Mandiant recommends using a name without spaces. Choose some security questions, then turn off all the ~~spyware~~ windows privacy settings. Keep telling Microsoft no thank you until you get greeted with the sweet sweet "Hi, we're getting everything ready for you" screen. Victory at last!
 
 After the installation finally finishes, you have a few things to take care of in preperation of installing Flare VM.
 
