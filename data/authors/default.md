@@ -1,7 +1,7 @@
 ---
 name: Cody Cooper
 avatar: /static/images/avatar.png
-occupation: Defensive Cyber Operator
+occupation: Computer Network Defense Analyst
 company: Department of Homeland Security
 twitter: https://twitter.com/cascodius
 linkedin: https://www.linkedin.com/in/cascodia/
