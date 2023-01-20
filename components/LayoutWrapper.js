@@ -76,7 +76,7 @@ const LayoutWrapper = ({ children }) => {
           ) : null}
         </nav>
       </header>
-      <main className="mx-12 mb-auto lg:mx-[15vh]">{children}</main>
+      <main className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">{children}</main>
     </SectionContainer>
   )
 }
