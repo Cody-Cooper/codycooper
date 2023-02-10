@@ -1,8 +1,11 @@
 import SectionContainer from './SectionContainer'
-import Hamburger from './Hamburger'
+import headerNavLinks from '@/data/headerNavLinks'
+import Link from './Link'
 import ThemeSwitch from './ThemeSwitch'
 import { useRouter } from 'next/router'
 import { FaAngleDown } from 'react-icons/fa'
+import MobileNav from './MobileNav'
+import Home from 'pages'
 
 const LayoutWrapper = ({ children }) => {
   const router = useRouter()
@@ -22,25 +25,37 @@ const LayoutWrapper = ({ children }) => {
   return (
     <SectionContainer>
       <header className={'bg-stone-900 dark:bg-stone-200'}>
-        <nav className={navBarSizes[0] + ' flex items-center justify-between'}>
-          <ThemeSwitch />
-          <Hamburger />
+        <nav className={navBarSizes[0] + ' flex items-center justify-end'}>
+          {/* <Hamburger /> */}
+          <div className="absolute top-0 right-0 z-50 flex items-center text-base leading-5">
+            <div className="hidden sm:block">
+              {headerNavLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="p-1 font-medium text-stone-200 dark:text-stone-800 sm:p-4"
+                >
+                  {link.title}
+                </Link>
+              ))}
+            </div>
+            <ThemeSwitch />
+            <MobileNav />
+          </div>
 
           {/* ==== Center logo ==== */}
           <section
-            className={
-              navBarSizes[1] +
-              ' codycooper pointer-events-none absolute w-full  text-center font-bold '
-            }
+            className={navBarSizes[1] + ' codycooper absolute w-full  text-center font-bold '}
           >
             {/* desktop */}
-            <h1
+            <Link
+              href="/"
               className={
-                'hidden text-[80px] leading-none text-stone-100 mix-blend-difference md:hidden lg:inline-block'
+                'z-0 hidden text-[80px] leading-none text-stone-100 mix-blend-difference md:hidden lg:inline-block'
               }
             >
               codycooper
-            </h1>
+            </Link>
 
             {/* mobile */}
             {rootPage ? (
@@ -56,13 +71,14 @@ const LayoutWrapper = ({ children }) => {
                 </h1>
               </div>
             ) : (
-              <h1
+              <Link
+                href="/"
                 className={
                   'm-0 inline-block text-[80px] leading-[1.1] text-stone-100 mix-blend-difference lg:hidden'
                 }
               >
                 cc
-              </h1>
+              </Link>
             )}
 
             {rootPage ? <h2 className={'m-0 text-2xl'}>ctf writeups and more</h2> : null}
@@ -76,7 +92,7 @@ const LayoutWrapper = ({ children }) => {
           ) : null}
         </nav>
       </header>
-      <main className="mx-auto max-w-3xl px-4 sm:px-6 xl:max-w-5xl xl:px-0">{children}</main>
+      <main className="mx-auto max-w-3xl px-10 sm:px-6 xl:max-w-5xl xl:px-0">{children}</main>
     </SectionContainer>
   )
 }
