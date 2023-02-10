@@ -100,6 +100,8 @@ INFO_OS=$(printf "%s (%s)\n%s" "$DISTRIB_DESCRIPTION" "$(uname -r)" "$(date)" | 
 printf "\n\n\n%s\n\n%s\n\n%s\n%s\n\n\n" "$WELCOME_TO" "$INFO_HOST" "$HOME_SERVER" "$INFO_OS" | $LOLCAT -f
 ```
 
+run the command `sudo chmod +x /etc/update-motd.d/00-header` to make the file executable, and you're good to go!
+
 ## Conclusion
 
 As you can see, this is a quick and easy project that not only adds some personality to your Raspberry Pi, but also teaches you about some useful command-line utilities. By using figlet and lolcat, you can create an eye-catching and informative custom SSH welcome message that will be displayed every time you log into your device. I hope that you not only enjoyed this tutorial, but that you also learned a thing or two at the same time!
