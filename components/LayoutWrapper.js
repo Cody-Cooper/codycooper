@@ -20,8 +20,6 @@ const LayoutWrapper = ({ children }) => {
     }
   }
 
-  console.log('NavBar success')
-
   return (
     <SectionContainer>
       <header className={'bg-stone-900 dark:bg-stone-200'}>
