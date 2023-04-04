@@ -1,0 +1,84 @@
+---
+title: How to Install Kill_Stream.py on Tautulli to Stop Users from Transcribing Streams in Plex on an Unraid server
+date: '2023-04-04'
+tags: ['UnRAID', 'plex', 'home lab', 'linux']
+draft: false
+summary: Do you want to save your bandwidth and CPU resources by preventing your Plex users from transcribing streams? If so, you should check out kill_stream.py, a custom script that can kill any stream based on your conditions... such as a user transcribing content that you would rather they didn't. I can show you how.
+images: []
+layout: PostLayout
+canonicalUrl:
+---
+
+If you are a Plex Pass user and you want to prevent your users from transcribing streams, you might be interested in using a custom script called kill_stream.py. This script can be added to Tautulli, a web application that monitors and tracks your Plex Media Server activity. In this article, I will show you how to install and configure kill_stream.py on Tautulli running on an Unraid server.
+
+#### Step 1: Download the script
+
+The kill_stream.py script is part of the [JBOPS](https://github.com/blacktwin/JBOPS/) (Just a Bunch Of Plex Scripts) collection by blacktwin, which you can find on GitHub. To download the script, you need to first create a directory in the appdata folder for tautulli on your unraid server. I made mine at `/mnt/user/appdata/tautulli/scripts`. Next, either ssh or use the web ui to use curl or wget the kill_stream.py script to your newly minted scripts folder. For example, you can run the following command to download the script while you are currently in the directory you would like to save it to:
+
+`curl -O https://raw.githubusercontent.com/blacktwin/JBOPS/master/killstream/kill_stream.py`
+
+Alternatively, you can download the script manually from the GitHub page and save it to your preferred location.
+
+#### Step 2: Make the script executable
+
+After downloading the script, you need to make it executable by changing its permissions. You can do this by running the following command:
+
+`chmod a+x kill_stream.py`
+
+#### Step 3: Add the script to Tautulli
+
+Now that you have the script ready, you need to add it to Tautulli as a notification agent. To do this, follow these steps:
+
+Open Tautulli web interface and go to `Settings > Notification Agents > Add a new notification agent > Script.`
+
+![overview of the notification agents screen on tautulli](/static/images/kill_stream/notification-agents-screen.png)
+
+In the Configuration tab, enter the following details:
+
+- Script Folder: /config/scripts (where you saved the kill_stream.py script, might be different depending on how you set up your shares)
+- Script File: ./kill_stream.py (should be selectable in a dropdown list)
+- Script Timeout: 30 (or any value you prefer)
+- Description: Kill transcodes (or any name you prefer)
+
+<br />
+![screenshot of how you should be setting up your configuration tab for kill_stream.py](/static/images/kill_stream/notification-agent-configuration-tab.png)
+
+In the Triggers tab, check Playback Start and Transcode Decision Change.
+
+![screenshot of how you should be setting up your triggers tab for kill_stream.py](/static/images/kill_stream/notification-agent-triggers-tab.png)
+
+In the Conditions tab, set the conditions that you want to use to kill a stream. For example, if you want to kill all transcodes, you can set `[Transcode Decision | is | transcode]`. If you would like to get more nuanced and specific, please visit check out the [readme for kill_stream.py](https://github.com/blacktwin/JBOPS/tree/master/killstream). There's a lot you can do other than just killing on transcribe, such as killing if paused for x amount of time or killing if the user has x concurrent streams going. For this tutorial, however, I'll just be focusing on killing the stream on transcribe.
+
+![screenshot of how you should be setting up your conditions tab for
+kill_stream.py](/static/images/kill_stream/notification-agent-conditions-tab.png)
+
+In the Script Arguments tab, enter the arguments that you want to pass to the script. For example, if you want to kill all transcodes and notify the user with a message, you can enter:
+`–--jbop stream --username '{username}' --sessionId {session_id} --killMessage 'Transcoding streams is not allowed. To continue, please change quality to "Play original/maximum quality."'`
+
+![screenshot of how you should be setting up your arguments tab for
+kill_stream.py](/static/images/kill_stream/notification-agent-arguments-tab.png)
+
+The `--killMessage` argument specifies the message that will be sent to the user when their stream is killed. Change it to whatever you would like to show up when the users stream is killed!
+
+#### Step 4: Send rich notifications to discord or slack
+
+In order to send rich notifications to discord/slack, you just need to add `--notify NotifierID --richMessage discord` to the end of the arguments, after "..."Play original/maximum quality.". Make sure that "NotifierID" is changed to the notifier ID of your webhook. It should just be a single number, for example mine is "3". Obviously, if you'd rather they go to slack just change discord to slack. There's a little more setup involved to get this working if you don't have a webhook set up yet, however.
+
+#### Step 4a: Create webhook
+
+Create a new notification agent, but this time instead of "Script" choose "Webhook"; `Settings > Notification Agents > Add a new notification agent > Webhook`. Get your webhook and paste it in to the `Webhook URL` box, make sure `Webhook Method` is POST, and press save. Take note of the Notifier ID in the title bar of the Webhook Settings window.
+
+![screenshot of how you should be setting up your configuration tab for
+webhooks in tautulli](/static/images/kill_stream/webhook-configuration.png)
+
+#### Step 4: Test the script
+
+To test if the script works as expected, you can try playing a transcoded stream on Plex and see if it gets killed by Tautulli.
+
+![How the kill message should look for the end user on plex after triggering kill_stream.py](/static/images/kill_stream/kill-message-plex.png)
+
+You should also receive a notification in discord/slack with the message that you specified in the script arguments
+
+![How the rich discord notification should look on plex after triggering kill_stream.py](/static/images/kill_stream/kill-message-discord.png)
+
+That’s it! You have successfully installed and configured kill_stream.py on Tautulli to stop users from transcribing streams in Plex on Unraid. I hope you found this article helpful and informative. If you have any questions or feedback, please leave them in the comments below. Thank you for reading!
