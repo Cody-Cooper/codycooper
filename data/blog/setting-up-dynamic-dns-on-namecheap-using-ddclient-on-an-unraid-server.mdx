@@ -1,0 +1,34 @@
+---
+title: Setting up Dynamic DNS on Namecheap using ddclient on an Unraid server
+date: '2023-03-27'
+tags: ['unraid', 'home-lab']
+draft: false
+summary: Dynamic DNS allows you to update your IP address automatically when it changes, so you can access your domain name from anywhere. This is useful for a ton of different reasons, and will tie in very well to Nginx and allow you to set subdomain based proxies to whatever Unraid app you would like.
+images: []
+layout: PostLayout
+canonicalUrl:
+---
+
+If you have a home server running Unraid and you want to access it remotely, you might need to set up Dynamic DNS (DDNS) to keep your domain name updated with your changing IP address. In this blog post, I will show you how to use ddclient, a free and open source tool, to update your Namecheap domain with your Unraid server's IP address.
+
+### Setting up DNS records
+
+First, we need to set up your domain. Log in, and click the `Manage` button next to the domain you'd like to use. Go to the Advanced DNS tab, scroll down and turn `Dynamic DNS` on and copy the password that is generated. You will need this password later for ddclient configuration. Add two A + Dynamic DNS Records, one wildcard and one @. Point both of these to your [public IPv4 address](https://whatismyipaddress.com/), and set TTL to Automatic.
+
+![namecheap dynamic DNS settings](/static/images/ddns/namecheap-dynamic-dns-settings.png)
+
+#### Note
+
+Using a wildcard DNS record is useful if you plan to have multiple subdomains and would rather not create a new record for each individual one. There may be some security issues with this method, research and do whatever is best for your particular instance.
+
+### Settting up ddclient
+
+![Screenshot of the ddclient template page on the unraid app store](/static/images/ddns/ddclient-app-page.png)
+
+Next, install ddclient to Unraid. Go in to the ddclient console, and type `vi ddclient.conf`. Delete everything except for the domain provider your use - so for me, Namecheap. Change the login to the domain you're using, and put the Dynamic DNS Password from Namecheap for password. Put the wildcard and @ sign under the password.
+
+![ddclient conf settings](/static/images/ddns/ddclient-conf.png)
+
+You should now have Dynamic DNS set up for your domain! To test this, you can change the value on your A records to 127.0.0.1 or whatever you'd like, and in a few minutes (5 minutes by default, you can change this in `ddclient.conf`) it should update back to your public IPv4 address.
+
+That's it! Now you can access your server remotely using any subdomain name you set in Nginx or any other proxy manager. You can use this to [set up an Umami instance](/blog/how-to-install-umami-analytics-on-an-unraid-server-using-docker-compose-and-nginx) to track analytics on your website, or many other projects! I currently use it for Umami, Plex, and Notifiarr. Let me know in the comments what you end up using this for, I'd love to find more good use cases.
