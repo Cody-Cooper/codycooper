@@ -14,9 +14,9 @@ const LayoutWrapper = ({ children }) => {
 
   function getNavBarSizes() {
     if (rootPage) {
-      return ['h-halvsies mb-halvsies', 'top-[calc(50%-95px)] lg:top-[calc(50%-47px)] ']
+      return ['h-halvsies mb-halvsies', 'top-[calc(50%-72px)] lg:top-[calc(50%-47px)] ']
     } else {
-      return ['h-10', 'top-[-11px] lg:top-[-6px]']
+      return ['h-10', 'top-[-6px] lg:top-[-6px]']
     }
   }
 
@@ -72,7 +72,7 @@ const LayoutWrapper = ({ children }) => {
               <Link
                 href="/"
                 className={
-                  'm-0 inline-block text-[80px] leading-[1.1] text-stone-100 mix-blend-difference lg:hidden'
+                  'm-0 mb-2 inline-block text-[80px] leading-[1.1] text-stone-100 mix-blend-difference lg:hidden'
                 }
               >
                 cc
