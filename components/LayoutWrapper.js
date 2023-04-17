@@ -25,7 +25,7 @@ const LayoutWrapper = ({ children }) => {
       <header className={'bg-stone-900 dark:bg-stone-200'}>
         <nav className={navBarSizes[0] + ' flex items-center justify-end'}>
           {/* <Hamburger /> */}
-          <div className="absolute top-0 right-0 z-50 flex items-center text-base leading-5">
+          <div className="absolute right-0 top-0 z-50 flex items-center text-base leading-5">
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
                 <Link

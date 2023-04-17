@@ -19,7 +19,7 @@ const MobileNav = () => {
 
   return (
     <section>
-      <div className="top-0 right-0 z-50 sm:hidden">
+      <div className="right-0 top-0 z-50 sm:hidden">
         <button
           type="button"
           className="ml-1 mr-1 h-8 w-8 rounded py-1"
@@ -40,9 +40,9 @@ const MobileNav = () => {
           </svg>
         </button>
       </div>
-      <div className="fixed top-0 right-0 z-50 sm:hidden">
+      <div className="fixed right-0 top-0 z-50 sm:hidden">
         <div
-          className={`fixed top-0 left-0 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-stone-900 ${
+          className={`fixed left-0 top-0 h-full w-full transform bg-gray-200 opacity-95 duration-300 ease-in-out dark:bg-stone-900 ${
             navShow ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -57,7 +57,7 @@ const MobileNav = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                className="fixed top-0 right-0 w-[40px] text-stone-800 text-gray-800 dark:text-stone-200"
+                className="fixed right-0 top-0 w-[40px] text-gray-800 text-stone-800 dark:text-stone-200"
               >
                 <path
                   fillRule="evenodd"
