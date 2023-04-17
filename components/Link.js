@@ -6,11 +6,7 @@ const CustomLink = ({ href, ...rest }) => {
   const isAnchorLink = href && href.startsWith('#')
 
   if (isInternalLink) {
-    return (
-      <Link href={href}>
-        <a className="lowercase" {...rest} />
-      </Link>
-    )
+    return <Link href={href} className="lowercase" {...rest}></Link>
   }
 
   if (isAnchorLink) {

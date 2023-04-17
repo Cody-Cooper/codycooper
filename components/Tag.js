@@ -6,6 +6,7 @@ const Tag = ({ text }) => {
     <Link
       href={`/tags/${kebabCase(text)}`}
       className="mr-3 text-sm font-medium lowercase text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
+      legacyBehavior
     >
       {text.split(' ').join('-')}
     </Link>
