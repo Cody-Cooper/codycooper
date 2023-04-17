@@ -2,10 +2,12 @@
   "name": "tailwind-nextjs-starter-blog",
   "version": "1.5.6",
   "private": true,
+  "license": "CC-BY-ND-NC",
   "scripts": {
     "start": "cross-env SOCKET=true node ./scripts/next-remote-watch.js ./data",
     "dev": "next dev",
-    "build": "next build && node ./scripts/generate-sitemap",
+    "build": "next build",
+    "postbuild": "next-sitemap",
     "serve": "next start",
     "analyze": "cross-env ANALYZE=true next build",
     "lint": "next lint --fix --dir pages --dir components --dir lib --dir layouts --dir scripts",
@@ -16,6 +18,7 @@
   "dependencies": {
     "@fontsource/inter": "4.5.2",
     "@next/bundle-analyzer": "^12.1.4",
+    "@next/env": "*",
     "@tailwindcss/typography": "^0.5.0",
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.13.13",
@@ -24,6 +27,7 @@
     "image-size": "1.0.0",
     "mdx-bundler": "^8.0.0",
     "next": "^13.3.0",
+    "next-sitemap": "^4.0.7",
     "next-themes": "^0.0.14",
     "postcss": "^8.4.5",
     "preact": "^10.6.2",
@@ -40,8 +44,10 @@
     "remark-gfm": "^3.0.1",
     "sharp": "^0.32.0",
     "tailwindcss": "^3.3.0",
+    "typescript": ">=2.8.0",
     "unist-util-visit": "^4.0.0",
-    "vercel": "^28.18.5"
+    "vercel": "^28.18.5",
+    "webpack": "^5.0.0"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.1.2",
