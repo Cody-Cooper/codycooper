@@ -31,7 +31,7 @@ const siteMetadata = {
     provider: 'buttondown',
   },
   comment: {
-    provider: 'giscus', // supported providers: giscus, utterances, disqus
+    provider: 'giscus',
     giscusConfig: {
       // Visit the link below, and follow the steps in the 'configuration' section
       // https://giscus.app/
