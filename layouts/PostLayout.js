@@ -51,7 +51,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
             className="divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0"
             style={{ gridTemplateRows: 'auto 1fr' }}
           >
-            <dl className="pb-10 pt-6 xl:border-b xl:border-gray-200 xl:pt-11 xl:dark:border-gray-700">
+            <dl className="pb-10 pt-6 xl:border-b xl:pt-11 xl:border-gray-200">
               <dt className="sr-only">Authors</dt>
               <dd>
                 <ul className="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
@@ -68,9 +68,7 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                       )}
                       <dl className="whitespace-nowrap text-sm font-medium leading-5">
                         <dt className="sr-only">Name</dt>
-                        <dd className="lowercase text-gray-900 dark:text-gray-100">
-                          {author.name}
-                        </dd>
+                        <dd className="lowercase text-gray-900">{author.name}</dd>
                         <dt className="sr-only">Twitter</dt>
                         <dd>
                           {author.twitter && (

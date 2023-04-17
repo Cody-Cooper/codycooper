@@ -77,7 +77,9 @@ const LayoutWrapper = ({ children }) => {
               </Link>
             )}
 
-            {rootPage ? <h2 className={'m-0 text-2xl'}>ctf writeups and more</h2> : null}
+            {rootPage ? (
+              <h2 className={'m-0 text-2xl text-stone-900'}>ctf writeups and more</h2>
+            ) : null}
           </section>
           {rootPage ? (
             <section className={'mx-auto h-screen'}>
