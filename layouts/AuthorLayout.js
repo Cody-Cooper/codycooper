@@ -9,7 +9,7 @@ export default function AuthorLayout({ children, frontMatter }) {
     <>
       <PageSEO title={`About - ${name}`} description={`About me - ${name}`} />
       <div className="space-y-2 pb-1 pt-6 md:space-y-5">
-        <h1 className="pt-8 text-center text-3xl font-bold lowercase leading-[1] text-gray-900 dark:text-gray-100">
+        <h1 className="pt-8 text-center text-3xl font-bold lowercase leading-[1] text-gray-900">
           about
         </h1>
       </div>
@@ -17,8 +17,8 @@ export default function AuthorLayout({ children, frontMatter }) {
         <div className="flex flex-col items-center">
           <Image src={avatar} alt="avatar" width="192px" height="192px" className="h-48 w-48 " />
           <h3 className="pb-2 pt-4 text-2xl font-bold leading-8 tracking-tight">{name}</h3>
-          <div className="text-gray-500 dark:text-gray-400">{occupation}</div>
-          <div className="text-gray-500 dark:text-gray-400">{company}</div>
+          <div className="text-gray-500">{occupation}</div>
+          <div className="text-gray-500">{company}</div>
           <div className="flex space-x-3 pt-6">
             <SocialIcon kind="mail" href={`mailto:${email}`} />
             <SocialIcon kind="github" href={github} />

@@ -14,6 +14,20 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    nightwind: {
+      colors: {
+        stone: {
+          200: 'stone.900',
+          900: 'stone.200',
+        },
+        gray: {
+          100: 'gray.900',
+          400: 'gray.500',
+          500: 'gray.400',
+          900: 'gray.100',
+        },
+      },
+    },
     extend: {
       spacing: {
         '9/16': '56.25%',
@@ -165,5 +179,5 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [require('@tailwindcss/typography'), require('nightwind')],
 }

@@ -1,8 +1,7 @@
 import SectionContainer from './SectionContainer'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
-import { Simple } from '@theme-toggles/react'
-import { useTheme } from 'next-themes'
+import ModeSwitch from './ModeSwitch'
 import { useRouter } from 'next/router'
 import { FaAngleDown } from 'react-icons/fa'
 import MobileNav from './MobileNav'
@@ -11,7 +10,6 @@ const LayoutWrapper = ({ children }) => {
   const router = useRouter()
   var rootPage = router.pathname === '/' ? true : false
   var navBarSizes = getNavBarSizes()
-  const { setTheme, resolvedTheme } = useTheme()
 
   function getNavBarSizes() {
     if (rootPage) {
@@ -23,7 +21,7 @@ const LayoutWrapper = ({ children }) => {
 
   return (
     <SectionContainer>
-      <header className={'bg-stone-900 dark:bg-stone-200'}>
+      <header className={'bg-stone-900'}>
         <nav className={navBarSizes[0] + ' flex items-center justify-end'}>
           <div className="absolute right-0 top-0 z-50 flex items-center text-base leading-5">
             <div className="hidden sm:block">
@@ -31,17 +29,13 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 font-medium text-stone-200 dark:text-stone-800 sm:p-4"
+                  className="p-1 font-medium text-stone-200 sm:p-4"
                 >
                   {link.title}
                 </Link>
               ))}
             </div>
-            <Simple
-              duration={750}
-              className="ml-1 mr-1 h-8 w-8 rounded p-1 text-stone-200 dark:text-stone-800"
-              onToggle={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
-            />
+            <ModeSwitch />
             <MobileNav />
           </div>
 
@@ -53,7 +47,7 @@ const LayoutWrapper = ({ children }) => {
             <Link
               href="/"
               className={
-                'z-0 hidden text-[80px] leading-none text-stone-100 mix-blend-difference md:hidden lg:inline-block'
+                'z-0 hidden text-[80px] leading-none mix-blend-difference text-stone-200 dark:text-stone-900 md:hidden lg:inline-block'
               }
             >
               codycooper
@@ -64,7 +58,7 @@ const LayoutWrapper = ({ children }) => {
               <div className={'mx-[15%]'}>
                 <h1
                   className={
-                    'm-0 mb-2 inline-block text-[80px] leading-[1.1]  text-stone-100 mix-blend-difference lg:hidden'
+                    'm-0 mb-2 inline-block text-[80px] leading-[1.1] mix-blend-difference text-stone-200 dark:text-stone-900 lg:hidden'
                   }
                 >
                   cody
@@ -76,7 +70,7 @@ const LayoutWrapper = ({ children }) => {
               <Link
                 href="/"
                 className={
-                  'm-0 mb-2 inline-block text-[80px] leading-[1.1] text-stone-100 mix-blend-difference lg:hidden'
+                  'm-0 mb-2 inline-block text-[80px] leading-[1.1] mix-blend-difference text-stone-200 dark:text-stone-900 lg:hidden'
                 }
               >
                 cc
@@ -88,7 +82,9 @@ const LayoutWrapper = ({ children }) => {
           {rootPage ? (
             <section className={'mx-auto h-screen'}>
               <FaAngleDown
-                className={'absolute bottom-6 text-4xl text-stone-100 mix-blend-difference'}
+                className={
+                  'absolute bottom-6 text-4xl mix-blend-difference text-stone-200 dark:text-stone-900'
+                }
               />
             </section>
           ) : null}

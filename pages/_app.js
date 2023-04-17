@@ -1,4 +1,4 @@
-import '@/css/tailwind.css'
+import '@/css/tailwind.scss'
 import '@/css/prism.css'
 import 'katex/dist/katex.css'
 import '@theme-toggles/react/css/Simple.css'
@@ -18,7 +18,7 @@ const isSocket = process.env.SOCKET
 
 export default function App({ Component, pageProps }) {
   return (
-    <ThemeProvider attribute="class" defaultTheme={siteMetadata.theme}>
+    <ThemeProvider attribute="class" storageKey="nightwind-mode" defaultTheme={siteMetadata.theme}>
       <Head>
         <meta content="width=device-width, initial-scale=1" name="viewport" />
       </Head>
