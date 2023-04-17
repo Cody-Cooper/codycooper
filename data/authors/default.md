@@ -1,6 +1,6 @@
 ---
 name: Cody Cooper
-avatar: /static/images/avatar.png
+avatar: /static/images/avatar.svg
 occupation: Computer Network Defense Analyst
 company: Department of Homeland Security
 twitter: https://twitter.com/cascodius

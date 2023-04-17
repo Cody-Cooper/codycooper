@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://codycooper.io',
   siteRepo: 'https://github.com/Cody-Cooper/codycooper',
   siteLogo: '/static/images/logo.png',
-  image: '/static/images/avatar.png',
+  image: '/static/images/avatar.svg',
   socialBanner: '/static/images/twitter-card.png',
   github: 'https://github.com/Cody-Cooper',
   twitter: 'https://twitter.com/cascodius',
