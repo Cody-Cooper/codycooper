@@ -1,3 +1,13 @@
+body {
+  @apply transition-colors duration-300;
+}
+main.a {
+  @apply transition-colors duration-150;
+}
+prose.p {
+  @apply transition-colors duration-150;
+}
+
 #hamburger.active ul {
   visibility: visible;
   pointer-events: initial;

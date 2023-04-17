@@ -1,16 +1,17 @@
 import SectionContainer from './SectionContainer'
 import headerNavLinks from '@/data/headerNavLinks'
 import Link from './Link'
-import ThemeSwitch from './ThemeSwitch'
+import { Simple } from '@theme-toggles/react'
+import { useTheme } from 'next-themes'
 import { useRouter } from 'next/router'
 import { FaAngleDown } from 'react-icons/fa'
 import MobileNav from './MobileNav'
-import Home from 'pages'
 
 const LayoutWrapper = ({ children }) => {
   const router = useRouter()
   var rootPage = router.pathname === '/' ? true : false
   var navBarSizes = getNavBarSizes()
+  const { setTheme, resolvedTheme } = useTheme()
 
   function getNavBarSizes() {
     if (rootPage) {
@@ -24,7 +25,6 @@ const LayoutWrapper = ({ children }) => {
     <SectionContainer>
       <header className={'bg-stone-900 dark:bg-stone-200'}>
         <nav className={navBarSizes[0] + ' flex items-center justify-end'}>
-          {/* <Hamburger /> */}
           <div className="absolute right-0 top-0 z-50 flex items-center text-base leading-5">
             <div className="hidden sm:block">
               {headerNavLinks.map((link) => (
@@ -37,7 +37,11 @@ const LayoutWrapper = ({ children }) => {
                 </Link>
               ))}
             </div>
-            <ThemeSwitch />
+            <Simple
+              duration={750}
+              className="ml-1 mr-1 h-8 w-8 rounded p-1 text-stone-200 dark:text-stone-800"
+              onToggle={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+            />
             <MobileNav />
           </div>
 
