@@ -1,7 +1,6 @@
 import '@/css/tailwind.scss'
 import '@/css/prism.css'
 import 'katex/dist/katex.css'
-import '@theme-toggles/react/css/Simple.css'
 
 import '@fontsource/inter/variable-full.css'
 
