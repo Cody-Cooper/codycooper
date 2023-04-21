@@ -11,7 +11,7 @@ const Analytics = () => {
           async
           defer
           data-website-id={siteMetadata.analytics.umamiWebsiteId}
-          src="https://umami.coopers.wtf/umami.js" // Replace with your umami instance
+          src="https://umami.coopers.wtf/script.js" // Replace with your umami instance
         />
       </>
     )
