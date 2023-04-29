@@ -1,0 +1,107 @@
+---
+title: Adding Some Personality to Your Raspberry Pi with a Custom SSH Welcome Message
+date: "2023-01-19"
+description: Setting up a custom SSH welcome message on your Raspberry Pi can be a fun way to add a personal touch to your device. In this tutorial, we will use two command-line utilities, figlet and lolcat, to create an attractive and informative message that will be displayed when you log in to your Raspberry Pi via SSH.
+---
+
+Are you tired of the boring, default message that appears when you log into your Raspberry Pi via SSH? Want to add some personality to your device? In this tutorial, we'll show you how to use two command-line utilities, figlet and lolcat, to create an eye-catching and informative message that will be displayed each time you log into your Raspberry Pi.
+
+## Step 1: Installation
+
+Before we begin, we need to install figlet and lolcat on our Raspberry Pi. Both of these utilities can be installed by running the following command in the terminal:
+
+```
+sudo apt-get install figlet lolcat
+```
+
+## Step 2: Download Figlet Fonts
+
+Figlet comes with a few built-in fonts, but if you want to add some variety to your message, you'll want to download some additional fonts. You can find a wide variety of figlet fonts on Github, and I've made a repo full of fonts that will work with this tutorial. [You can find it here](https://github.com/Cody-Cooper/figlet-fonts). Once you've cloned the repository, place the fonts inside the `/usr/share/figlet` directory.
+
+## Step 3: Removing the Default MOTD
+
+The default message that appears when you log into your Raspberry Pi via SSH is known as the Message of the Day (MOTD). To remove it and make way for our custom message, we need to delete two files: /etc/update-motd.d/10-uname and /etc/motd. You can do this by running the following commands in the terminal:
+
+```
+sudo rm /etc/update-motd.d/10-uname
+sudo rm /etc/motd
+```
+
+## Step 4: Configuring SSH
+
+Now that we've removed the default MOTD, we need to configure SSH to display our custom message. To do this, we need to open the SSH configuration file, `/etc/ssh/sshd_config`, and make a few changes.
+
+```
+PrintMotd no
+Banner none
+UsePAM yes
+PrintLastLog no
+```
+
+This will stop the default MOTD from being printed and tell the pi to use PAM instead. PrintLastLog controls the bit that tells you the last time you logged in - I don't care for this as my pi doesn't host anything important and isn't exposed to the internet, but if those are not true for you, keeping this set to "yes" may be in your best interest.
+
+## Step 5: Configure PAM
+
+To enable the PAM motd to print upon successful login, make the following changes to `/etc/pam.d/login`
+
+```
+# Prints the message of the day upon succesful login.
+# (Replaces the `MOTD_FILE' option in login.defs)
+session    optional   pam_motd.so  motd=/run/motd
+#session    optional   pam_motd.so  noupdate
+```
+
+## Step 6: Restarting SSH
+
+To make our changes take effect, we need to restart the SSH service. You can do this by running the following command in the terminal:
+`sudo systemctl restart sshd`
+
+## Step 7: Create the Custom MOTD Script
+
+Finally, it's time to create our custom MOTD script. We'll be creating a new script `00-header` in the `/etc/update-motd.d` directory. This script will contain the message that we want to display when we log into our Raspberry Pi.
+
+```
+#!/bin/sh
+
+# redirect errors to stdout... you never know
+exec 2>&1
+
+[ -r /etc/lsb-release ] && . /etc/lsb-release
+
+if [ -z "$DISTRIB_DESCRIPTION" ] && [ -x /usr/bin/lsb_release ]; then
+   # Fall back to using the very slow lsb_release utility
+   DISTRIB_DESCRIPTION=$(lsb_release -s -d)
+fi
+
+# just in case lolcat isn't in the path
+LOLCAT=/usr/games/lolcat
+
+# welcome text
+WELCOME_TO=$(echo 'WELCOME TO YOUR' | figlet -tc -f term)
+
+# randomize the figlet font
+FIGLETFONT=$(ls /usr/share/figlet/*.flf | shuf -n1 )
+
+# apply figlet font and center to chosen text
+INFO_HOST=$(echo 'RASPBERRY PI' | figlet -tc -f $FIGLETFONT)
+
+# optional third line under figlet font
+#HOME_SERVER=$(echo 'HOME SERVER' | figlet -tc -f term)
+
+# get os/arch/date
+INFO_OS=$(printf "%s (%s)\n%s" "$DISTRIB_DESCRIPTION" "$(uname -r)" "$(date)" | figlet -tc -f term)
+
+# print each variable and color with lolcat
+# NOTE: needs -f to force color output since intermediate file is not a TTY
+printf "\n\n\n%s\n\n%s\n\n%s\n%s\n\n\n" "$WELCOME_TO" "$INFO_HOST" "$HOME_SERVER" "$INFO_OS" | $LOLCAT -f
+```
+
+run the command `sudo chmod +x /etc/update-motd.d/00-header` to make the file executable, and you're good to go!
+
+## Conclusion
+
+As you can see, this is a quick and easy project that not only adds some personality to your Raspberry Pi, but also teaches you about some useful command-line utilities. By using figlet and lolcat, you can create an eye-catching and informative custom SSH welcome message that will be displayed every time you log into your device. I hope that you not only enjoyed this tutorial, but that you also learned a thing or two at the same time!
+
+![raspberry pi custom ssh motd example 1](https://i.imgur.com/Oz1NV45.png)
+
+![raspberry pi custom ssh motd example 2](https://i.imgur.com/JwCCkNG.png)

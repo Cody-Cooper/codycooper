@@ -1,4 +1,7 @@
-# personal website and blog
+# Next.js + Contentlayer
 
-built using the [tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) template
-deployed with vercel
+A template with Next.js 13 app dir, Contentlayer, Tailwind CSS and dark mode.
+
+https://next-contentlayer.vercel.app
+
+
