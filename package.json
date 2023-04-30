@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "turbo": "next dev --turbo --show-all",
     "build": "next build",
     "preview": "next build && next start",
     "start": "next start",
@@ -26,6 +27,9 @@
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rehype-code-titles": "^1.2.0",
+    "rehype-prism-plus": "^1.5.1",
+    "remark-gfm": "^3.0.1",
     "tailwindcss": "3.3.2",
     "typescript": "5.0.4"
   }
