@@ -10,7 +10,7 @@ Are you tired of the boring, default message that appears when you log into your
 
 Before we begin, we need to install figlet and lolcat on our Raspberry Pi. Both of these utilities can be installed by running the following command in the terminal:
 
-```
+```sh:terminal
 sudo apt-get install figlet lolcat
 ```
 
@@ -22,7 +22,7 @@ Figlet comes with a few built-in fonts, but if you want to add some variety to y
 
 The default message that appears when you log into your Raspberry Pi via SSH is known as the Message of the Day (MOTD). To remove it and make way for our custom message, we need to delete two files: /etc/update-motd.d/10-uname and /etc/motd. You can do this by running the following commands in the terminal:
 
-```
+```sh:terminal
 sudo rm /etc/update-motd.d/10-uname
 sudo rm /etc/motd
 ```
@@ -31,7 +31,7 @@ sudo rm /etc/motd
 
 Now that we've removed the default MOTD, we need to configure SSH to display our custom message. To do this, we need to open the SSH configuration file, `/etc/ssh/sshd_config`, and make a few changes.
 
-```
+```sh:/etc/ssh/sshd_config
 PrintMotd no
 Banner none
 UsePAM yes
@@ -44,11 +44,11 @@ This will stop the default MOTD from being printed and tell the pi to use PAM in
 
 To enable the PAM motd to print upon successful login, make the following changes to `/etc/pam.d/login`
 
-```
+```sh:/etc/pam.d/login
 # Prints the message of the day upon succesful login.
 # (Replaces the `MOTD_FILE' option in login.defs)
 session    optional   pam_motd.so  motd=/run/motd
-#session    optional   pam_motd.so  noupdate
+# session    optional   pam_motd.so  noupdate
 ```
 
 ## Step 6: Restarting SSH
@@ -60,7 +60,7 @@ To make our changes take effect, we need to restart the SSH service. You can do 
 
 Finally, it's time to create our custom MOTD script. We'll be creating a new script `00-header` in the `/etc/update-motd.d` directory. This script will contain the message that we want to display when we log into our Raspberry Pi.
 
-```
+```sh:/etc/update-motd.d/00-header
 #!/bin/sh
 
 # redirect errors to stdout... you never know

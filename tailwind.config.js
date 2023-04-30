@@ -19,6 +19,12 @@ module.exports = {
           500: "gray.400",
           900: "gray.100",
         },
+        neutral: {
+          300: "stone.800",
+        },
+        green: {
+          700: "green.500",
+        },
       },
     },
     extend: {},
