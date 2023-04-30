@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     "./app/**/*.{ts,tsx}",
@@ -27,7 +28,16 @@ module.exports = {
         },
       },
     },
-    extend: {},
+    extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            "--tw-prose-body": theme("colors.stone[900]"),
+            "--tw-prose-hr": theme("colors.stone[500]"),
+          },
+        },
+      }),
+    },
   },
   plugins: [require("@tailwindcss/typography"), require("nightwind")],
 };
