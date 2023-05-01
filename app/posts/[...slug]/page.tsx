@@ -1,12 +1,9 @@
-import { notFound } from "next/navigation";
-import { allPosts } from "contentlayer/generated";
-import { EditUrlFunction, DiscussUrlFunction, Post } from "./page.types";
-import Comment from "@/components/comments/comments";
-import Link from "next/link";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Mdx } from "@/components/mdx-components";
-import PostFooter from "./footer";
+import { allPosts } from "contentlayer/generated";
 
+import PostFooter from "./footer";
 import "./prism.css";
 
 interface PostProps {
@@ -15,12 +12,19 @@ interface PostProps {
   };
 }
 
-async function getPostFromParams(params: PostProps["params"]) {
+interface PostParams {
+  post: (typeof allPosts)[number];
+  fileName: string;
+}
+
+async function getPostFromParams(
+  params: PostProps["params"]
+): Promise<PostParams | null> {
   const slug = params?.slug?.join("/");
-  const post = allPosts.find((post) => post.slugAsParams === slug);
+  const post = allPosts.find((p) => p.slugAsParams === slug);
 
   if (!post) {
-    null;
+    return null;
   }
 
   const fileName = slug.split("/").pop() || "";
@@ -34,38 +38,33 @@ async function getPostFromParams(params: PostProps["params"]) {
 export async function generateMetadata({
   params,
 }: PostProps): Promise<Metadata> {
-  const { post } = await getPostFromParams(params);
+  const result = await getPostFromParams(params);
 
-  if (!post) {
+  if (!result?.post) {
     return {};
   }
 
   return {
-    title: post.title,
-    description: post.description,
+    title: result.post.title,
+    description: result.post.description,
   };
 }
 
 export async function generateStaticParams(): Promise<PostProps["params"][]> {
-  return allPosts.map((post) => ({
-    slug: post.slugAsParams.split("/"),
+  return allPosts.map((p) => ({
+    slug: p.slugAsParams.split("/"),
   }));
 }
 
 export default async function PostPage({ params }: PostProps) {
-  const { post, fileName } = await getPostFromParams(params);
+  const result = await getPostFromParams(params);
 
-  if (!post) {
+  if (!result) {
     notFound();
+    return null;
   }
 
-  const editUrl: EditUrlFunction = (fileName) =>
-    `https://github.com/Cody-Cooper/codycooper/blob/master/content/posts/${fileName}.mdx`;
-
-  const discussUrl: DiscussUrlFunction = (slug) =>
-    `https://mobile.twitter.com/search?q=${encodeURIComponent(
-      `https://codycooper.io/blog/${slug}`
-    )}`;
+  const { post, fileName } = result;
 
   return (
     <>
@@ -75,22 +74,7 @@ export default async function PostPage({ params }: PostProps) {
         <hr className="w-56 mx-auto border-stone-400" />
         <Mdx code={post.body.code} />
       </article>
-      <hr className="w-56 mx-auto border-stone-400" />
-      <div className="flex justify-center pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
-        <div>
-          <Link className="text-stone-900" href={discussUrl(post.slug)}>
-            {"Discuss on Twitter "}
-          </Link>
-          <p className="text-stone-900 inline-block"> • </p>
-          <Link className="text-stone-900" href={editUrl(fileName)}>
-            {" View on GitHub"}
-          </Link>
-        </div>
-      </div>
-      <hr className="w-56 mx-auto border-stone-400" />
-      <Comment />
-      <hr className="w-56 mx-auto border-stone-400" />
-      <PostFooter allPosts={allPosts} post={post} />
+      <PostFooter allPosts={allPosts} post={post} postName={fileName} />
     </>
   );
 }
