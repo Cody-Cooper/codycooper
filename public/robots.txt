@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://codycooper.io
-
-# Sitemaps
-Sitemap: https://codycooper.io/sitemap.xml
