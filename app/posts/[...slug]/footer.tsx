@@ -20,8 +20,12 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
   const next = nextContent ? nextContent : null;
 
   const editUrl = `https://github.com/Cody-Cooper/codycooper/blob/master/content/posts/${postName}.mdx`;
-  const discussUrl = `https://x.com/search?q=${encodeURIComponent(
-    `https://codycooper.io${post.slug}`
+  const postUrl = `https://codycooper.io${post.slug}`;
+  const shareTwitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
+    post.title
+  )}&url=${encodeURIComponent(postUrl)}`;
+  const shareLinkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+    postUrl
   )}`;
 
   return (
@@ -39,9 +43,23 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
       <hr className="w-56 mx-auto border-stone-400" />
       <div className="flex justify-center pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
         <div>
-          <Link className="text-stone-900" href={discussUrl}>
-            {"Discuss on Twitter "}
-          </Link>
+          <a
+            className="text-stone-900"
+            href={shareTwitterUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {"Share on Twitter "}
+          </a>
+          <p className="text-stone-900 inline-block"> • </p>
+          <a
+            className="text-stone-900"
+            href={shareLinkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {" Share on LinkedIn "}
+          </a>
           <p className="text-stone-900 inline-block"> • </p>
           <Link className="text-stone-900" href={editUrl}>
             {" View on GitHub"}
