@@ -16,6 +16,20 @@ export const metadata: Metadata = {
     url: "/newsletter",
     title: "Newsletter",
     description,
+    images: [
+      {
+        url: "/api/og?title=Newsletter",
+        width: 1200,
+        height: 630,
+        alt: "Newsletter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Newsletter",
+    description,
+    images: ["/api/og?title=Newsletter"],
   },
 };
 
