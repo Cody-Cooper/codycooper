@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { NextPage } from "next";
-import { Post, FileName } from "./page.types";
+
 import Comment from "@/components/comments/comments";
+
+import { FileName, Post } from "./page.types";
 
 interface Props {
   allPosts: Post[];
@@ -9,15 +10,13 @@ interface Props {
   postName: FileName;
 }
 
-const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
-  const sortedPosts = allPosts.sort(
+export default function PostFooter({ allPosts, post }: Props) {
+  const sortedPosts = [...allPosts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
-  const postIndex = sortedPosts.findIndex((p) => p.slug === post.slug);
-  const prevContent = sortedPosts[postIndex + 1] || null;
-  const prev = prevContent ? prevContent : null;
-  const nextContent = sortedPosts[postIndex - 1] || null;
-  const next = nextContent ? nextContent : null;
+  const postIndex = sortedPosts.findIndex((item) => item.slug === post.slug);
+  const prev = sortedPosts[postIndex + 1] ?? null;
+  const next = sortedPosts[postIndex - 1] ?? null;
 
   const postUrl = `https://codycooper.io${post.slug}`;
   const shareTwitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
@@ -33,38 +32,42 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
         <p className="text-lg font-semibold text-stone-900 dark:text-stone-100">
           Want more like this?
         </p>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+        <p className="mb-4 text-sm text-gray-700 dark:text-gray-300">
           Occasional notes on deliberate leadership. No spam, unsubscribe
           anytime.
         </p>
-        <div className="ml-embedded" data-form="QCyAqj"></div>
+        <div className="ml-embedded" data-form="QCyAqj" />
       </div>
-      <hr className="w-56 mx-auto border-stone-400" />
-      <div className="flex justify-center pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
+
+      <hr className="mx-auto w-56 border-stone-400" />
+
+      <div className="flex justify-center py-6 text-sm text-gray-700 dark:text-gray-300">
         <div>
           <a
-            className="text-stone-900"
+            className="text-stone-900 dark:text-stone-100"
             href={shareTwitterUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {"Share on Twitter "}
+            Share on Twitter
           </a>
-          <p className="text-stone-900 inline-block"> • </p>
+          <span className="text-stone-900 dark:text-stone-100"> • </span>
           <a
-            className="text-stone-900"
+            className="text-stone-900 dark:text-stone-100"
             href={shareLinkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {"Share on LinkedIn"}
+            Share on LinkedIn
           </a>
         </div>
       </div>
-      <hr className="w-56 mx-auto border-stone-400" />
+
+      <hr className="mx-auto w-56 border-stone-400" />
       <Comment />
-      <hr className="w-56 mx-auto border-stone-400" />
-      <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y py-6">
+      <hr className="mx-auto w-56 border-stone-400" />
+
+      <div className="divide-gray-200 py-6 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
         {(next || prev) && (
           <div className="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
             {prev && (
@@ -73,7 +76,7 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
                   Previous Article
                 </h2>
                 <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                  <Link href={`${prev.slug}`}>{prev.title}</Link>
+                  <Link href={prev.slug}>{prev.title}</Link>
                 </div>
               </div>
             )}
@@ -83,7 +86,7 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
                   Next Article
                 </h2>
                 <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
-                  <Link href={`${next.slug}`}>{next.title}</Link>
+                  <Link href={next.slug}>{next.title}</Link>
                 </div>
               </div>
             )}
@@ -92,6 +95,4 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
       </div>
     </footer>
   );
-};
-
-export default PostFooter;
+}
