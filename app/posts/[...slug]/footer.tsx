@@ -19,7 +19,6 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
   const nextContent = sortedPosts[postIndex - 1] || null;
   const next = nextContent ? nextContent : null;
 
-  const editUrl = `https://github.com/Cody-Cooper/codycooper/blob/master/content/posts/${postName}.mdx`;
   const postUrl = `https://codycooper.io${post.slug}`;
   const shareTwitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
     post.title
@@ -58,12 +57,8 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {" Share on LinkedIn "}
+            {"Share on LinkedIn"}
           </a>
-          <p className="text-stone-900 inline-block"> • </p>
-          <Link className="text-stone-900" href={editUrl}>
-            {" View on GitHub"}
-          </Link>
         </div>
       </div>
       <hr className="w-56 mx-auto border-stone-400" />
