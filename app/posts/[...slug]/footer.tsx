@@ -29,10 +29,10 @@ export default function PostFooter({ allPosts, post }: Props) {
   return (
     <footer>
       <div className="py-8 text-center">
-        <p className="text-lg font-semibold !text-stone-900 dark:!text-stone-100">
+        <p className="text-lg font-semibold !text-[#292524] dark:!text-[#d6d3d1]">
           Want more like this?
         </p>
-        <p className="mb-4 text-sm !text-gray-700 dark:!text-gray-300">
+        <p className="mb-4 text-sm !text-[#44403c] dark:!text-[#d6d3d1]">
           Occasional notes on deliberate leadership. No spam, unsubscribe
           anytime.
         </p>
@@ -41,19 +41,19 @@ export default function PostFooter({ allPosts, post }: Props) {
 
       <hr className="mx-auto w-56 border-stone-400" />
 
-      <div className="flex justify-center py-6 text-sm !text-gray-700 dark:!text-gray-300">
+      <div className="flex justify-center py-6 text-sm !text-[#292524] dark:!text-[#d6d3d1]">
         <div>
           <a
-            className="!text-stone-900 dark:!text-stone-100"
+            className="!text-[#292524] dark:!text-[#d6d3d1]"
             href={shareTwitterUrl}
             target="_blank"
             rel="noopener noreferrer"
           >
             Share on Twitter
           </a>
-          <span className="!text-stone-900 dark:!text-stone-100"> • </span>
+          <span className="!text-[#292524] dark:!text-[#d6d3d1]"> • </span>
           <a
-            className="!text-stone-900 dark:!text-stone-100"
+            className="!text-[#292524] dark:!text-[#d6d3d1]"
             href={shareLinkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
