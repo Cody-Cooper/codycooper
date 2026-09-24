@@ -20,12 +20,22 @@ const PostFooter: NextPage<Props> = ({ allPosts, post, postName }) => {
   const next = nextContent ? nextContent : null;
 
   const editUrl = `https://github.com/Cody-Cooper/codycooper/blob/master/content/posts/${postName}.mdx`;
-  const discussUrl = `https://mobile.twitter.com/search?q=${encodeURIComponent(
-    `https://codycooper.io/blog/${post.slug}`
+  const discussUrl = `https://x.com/search?q=${encodeURIComponent(
+    `https://codycooper.io${post.slug}`
   )}`;
 
   return (
     <footer>
+      <div className="py-8 text-center">
+        <p className="text-lg font-semibold text-stone-900 dark:text-stone-100">
+          Want more like this?
+        </p>
+        <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+          Occasional notes on deliberate leadership. No spam, unsubscribe
+          anytime.
+        </p>
+        <div className="ml-embedded" data-form="QCyAqj"></div>
+      </div>
       <hr className="w-56 mx-auto border-stone-400" />
       <div className="flex justify-center pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
         <div>

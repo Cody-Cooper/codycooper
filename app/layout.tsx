@@ -9,8 +9,10 @@ import { ModeToggle } from "@/components/mode-toggle";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Cody Cooper - Personal Website",
-  description: "My personal website and blog",
+  metadataBase: new URL("https://codycooper.io"),
+  title: "Cody Cooper",
+  description:
+    "Author of Talking To Your Boss. Writing Default: No, a book on deliberate leadership decisions. Every yes spends something.",
 };
 
 interface RootLayoutProps {
@@ -36,6 +38,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <nav className="ml-auto text-sm font-medium space-x-6">
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>
+                  <Link href="/books">Books</Link>
                   <Link href="/newsletter">Newsletter</Link>
                 </nav>
               </div>
