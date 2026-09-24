@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function Newsletter() {
   return (
-    <div className="prose dark:prose-invert">
+    <article className="prose py-6 dark:prose-invert">
       <h1 className="text-center">Every yes spends something.</h1>
       <p>
         I&apos;m writing <i>Default: No</i>, a book on deliberate leadership
@@ -34,6 +34,6 @@ export default function Newsletter() {
         worth sending. Unsubscribe anytime.
       </p>
       <NewsletterSignup className="mt-6 max-w-md" />
-    </div>
+    </article>
   );
 }
