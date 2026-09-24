@@ -6,7 +6,7 @@ const baseUrl = "https://codycooper.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = allPages.map((page) => ({
-    url: `${baseUrl}${page.slug}`,
+    url: `${baseUrl}/${page.slugAsParams}`,
   }));
 
   const posts = allPosts.map((post) => ({
