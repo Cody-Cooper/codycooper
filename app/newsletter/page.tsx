@@ -1,13 +1,42 @@
-export const metadata = {
-  title: "Newsletter - Cody Cooper",
-  description:
-    "Get the 5 Checks before you say yes. Occasional notes on deliberate leadership decisions while I write Default: No.",
+import type { Metadata } from "next";
+
+import { NewsletterSignup } from "@/components/newsletter-signup";
+
+const description =
+  "Get the 5 Checks before you say yes. Occasional notes on deliberate leadership decisions while I write Default: No.";
+
+export const metadata: Metadata = {
+  title: "Newsletter",
+  description,
+  alternates: {
+    canonical: "/newsletter",
+  },
+  openGraph: {
+    type: "website",
+    url: "/newsletter",
+    title: "Newsletter",
+    description,
+    images: [
+      {
+        url: "/api/og?title=Newsletter",
+        width: 1200,
+        height: 630,
+        alt: "Newsletter",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Newsletter",
+    description,
+    images: ["/api/og?title=Newsletter"],
+  },
 };
 
 export default function Newsletter() {
   return (
-    <div className="prose dark:prose-invert">
-      <h1>Every yes spends something.</h1>
+    <article className="prose py-6 dark:prose-invert">
+      <h1 className="text-center">Every yes spends something.</h1>
       <p>
         I&apos;m writing <i>Default: No</i>, a book on deliberate leadership
         decisions. Join the list and I&apos;ll send you the 5 Checks I run
@@ -18,7 +47,7 @@ export default function Newsletter() {
         Roughly one email every week or two, only when there&apos;s something
         worth sending. Unsubscribe anytime.
       </p>
-      <div className="ml-embedded" data-form="QCyAqj"></div>
-    </div>
+      <NewsletterSignup className="mt-6 max-w-md" />
+    </article>
   );
 }

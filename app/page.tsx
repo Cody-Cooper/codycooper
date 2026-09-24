@@ -1,5 +1,37 @@
-import { allPosts } from "@/.contentlayer/generated";
+import type { Metadata } from "next";
 import Link from "next/link";
+
+import { allPosts } from "@/.contentlayer/generated";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Articles",
+    images: [
+      {
+        url: "/api/og?title=Articles",
+        width: 1200,
+        height: 630,
+        alt: "Articles",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles",
+    images: ["/api/og?title=Articles"],
+  },
+};
+
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 
 export default function Home() {
   const sortedPosts = [...allPosts].sort(
@@ -7,7 +39,8 @@ export default function Home() {
   );
 
   return (
-    <div className="prose dark:prose-invert">
+    <article className="prose py-6 dark:prose-invert">
+      <h1 className="text-center">Articles</h1>
       {sortedPosts.map((post) => (
         <article key={post._id}>
           <Link href={post.slug}>
@@ -15,14 +48,12 @@ export default function Home() {
           </Link>
           {post.description && (
             <p>
-              <i>
-                {post.date && new Date(post.date).toLocaleDateString("en-US")}
-              </i>{" "}
-              - {post.description}
+              <i>{dateFormatter.format(new Date(post.date))}</i> -{" "}
+              {post.description}
             </p>
           )}
         </article>
       ))}
-    </div>
+    </article>
   );
 }
