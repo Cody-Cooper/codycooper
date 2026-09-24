@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import Comment from "@/components/comments/comments";
+import { NewsletterSignup } from "@/components/newsletter-signup";
 
 import { FileName, Post } from "./page.types";
 
@@ -36,7 +37,7 @@ export default function PostFooter({ allPosts, post }: Props) {
           Occasional notes on deliberate leadership. No spam, unsubscribe
           anytime.
         </p>
-        <div className="ml-embedded" data-form="QCyAqj" />
+        <NewsletterSignup className="mx-auto max-w-md" />
       </div>
 
       <hr className="mx-auto w-56 border-stone-400" />
