@@ -30,15 +30,17 @@ export async function generateMetadata({
     return {};
   }
 
+  const canonicalPath = `/${page.slugAsParams}`;
+
   return {
     title: page.title,
     description: page.description,
     alternates: {
-      canonical: page.slug,
+      canonical: canonicalPath,
     },
     openGraph: {
       type: "website",
-      url: page.slug,
+      url: canonicalPath,
       title: page.title,
       description: page.description,
     },
