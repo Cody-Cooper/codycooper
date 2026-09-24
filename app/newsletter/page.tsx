@@ -1,7 +1,20 @@
-export const metadata = {
-  title: "Newsletter - Cody Cooper",
-  description:
-    "Get the 5 Checks before you say yes. Occasional notes on deliberate leadership decisions while I write Default: No.",
+import type { Metadata } from "next";
+
+const description =
+  "Get the 5 Checks before you say yes. Occasional notes on deliberate leadership decisions while I write Default: No.";
+
+export const metadata: Metadata = {
+  title: "Newsletter",
+  description,
+  alternates: {
+    canonical: "/newsletter",
+  },
+  openGraph: {
+    type: "website",
+    url: "/newsletter",
+    title: "Newsletter",
+    description,
+  },
 };
 
 export default function Newsletter() {
@@ -18,7 +31,7 @@ export default function Newsletter() {
         Roughly one email every week or two, only when there&apos;s something
         worth sending. Unsubscribe anytime.
       </p>
-      <div className="ml-embedded" data-form="QCyAqj"></div>
+      <div className="ml-embedded" data-form="QCyAqj" />
     </div>
   );
 }
