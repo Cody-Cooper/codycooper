@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 export default function Newsletter() {
   return (
     <div className="prose dark:prose-invert">
-      <h1>Every yes spends something.</h1>
+      <h1 className="text-center">Every yes spends something.</h1>
       <p>
         I&apos;m writing <i>Default: No</i>, a book on deliberate leadership
         decisions. Join the list and I&apos;ll send you the 5 Checks I run
