@@ -1,5 +1,5 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
 import { allPages } from "contentlayer/generated";
 
 import { Mdx } from "@/components/mdx-components";
@@ -15,7 +15,7 @@ async function getPageFromParams(params: PageProps["params"]) {
   const page = allPages.find((page) => page.slugAsParams === slug);
 
   if (!page) {
-    null;
+    return null;
   }
 
   return page;
@@ -33,6 +33,15 @@ export async function generateMetadata({
   return {
     title: page.title,
     description: page.description,
+    alternates: {
+      canonical: page.slug,
+    },
+    openGraph: {
+      type: "website",
+      url: page.slug,
+      title: page.title,
+      description: page.description,
+    },
   };
 }
 
@@ -50,10 +59,10 @@ export default async function PagePage({ params }: PageProps) {
   }
 
   return (
-    <article className="py-6 prose dark:prose-invert">
-      <h1 className=" text-center	">{page.title}</h1>
+    <article className="prose py-6 dark:prose-invert">
+      <h1 className="text-center">{page.title}</h1>
       {page.description && <p className="text-xl">{page.description}</p>}
-      <hr className="w-56 mx-auto border-stone-400" />
+      <hr className="mx-auto w-56 border-stone-400" />
       <Mdx code={page.body.code} />
     </article>
   );
