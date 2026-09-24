@@ -22,7 +22,7 @@ export default function Home() {
 
   return (
     <div className="prose dark:prose-invert">
-      <h1>Articles</h1>
+      <h1 className="text-center">Articles</h1>
       {sortedPosts.map((post) => (
         <article key={post._id}>
           <Link href={post.slug}>
