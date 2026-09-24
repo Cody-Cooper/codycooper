@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { allPosts } from "contentlayer/generated";
 
 import { Mdx } from "@/components/mdx-components";
+import { StructuredData } from "@/components/structured-data";
 
 import PostFooter from "./footer";
 import "./prism.css";
@@ -92,9 +93,32 @@ export default async function PostPage({ params }: PostProps) {
 
   const { post, fileName } = result;
 
+  const canonicalUrl = `https://codycooper.io${post.slug}`;
+  const imageUrl = `https://codycooper.io/api/og?title=${encodeURIComponent(
+    post.title
+  )}`;
+
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${canonicalUrl}#article`,
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date,
+    mainEntityOfPage: canonicalUrl,
+    image: imageUrl,
+    author: {
+      "@id": "https://codycooper.io/#person",
+    },
+    publisher: {
+      "@id": "https://codycooper.io/#person",
+    },
+  };
+
   return (
     <>
-      <article className="prose mx-4 py-6 dark:prose-invert">
+      <StructuredData data={articleSchema} />
+      <article className="prose py-6 dark:prose-invert">
         <h1 className="mb-2">{post.title}</h1>
         {post.description && <p className="mt-0 text-lg">{post.description}</p>}
         <hr className="mx-auto w-56 border-stone-400" />
