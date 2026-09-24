@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Script from "next/script";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -35,12 +36,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <nav className="ml-auto text-sm font-medium space-x-6">
                   <Link href="/">Home</Link>
                   <Link href="/about">About</Link>
+                  <Link href="/newsletter">Newsletter</Link>
                 </nav>
               </div>
             </header>
             <main className="mx-4">{children}</main>
           </div>
           <Analytics />
+          <Script
+            id="mailerlite-universal"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account', '2656375');`,
+            }}
+          />
         </ThemeProvider>
       </body>
     </html>
