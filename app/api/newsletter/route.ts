@@ -32,10 +32,13 @@ export async function POST(request: Request) {
     );
   }
 
-  const { email, website } =
+  const parsedBody =
     typeof body === "object" && body !== null
       ? (body as { email?: unknown; website?: unknown })
-      : {};
+      : null;
+
+  const email = parsedBody?.email;
+  const website = parsedBody?.website;
 
   if (typeof website === "string" && website.length > 0) {
     return NextResponse.json({ message: "Thanks for subscribing." });
