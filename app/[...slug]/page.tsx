@@ -100,26 +100,35 @@ export default async function PagePage({ params }: PageProps) {
           name: "Books by Cody Cooper",
           itemListElement: [
             {
-              "@type": "Book",
+              "@type": "ListItem",
               position: 1,
-              name: "Default: No",
-              description:
-                "A book about deliberate leadership decisions, protecting time, energy, and attention, and being intentional about what earns a yes.",
-              author: {
-                "@id": "https://codycooper.io/#person",
+              item: {
+                "@type": "Book",
+                name: "Default: No",
+                description:
+                  "A book about deliberate leadership decisions, protecting time, energy, and attention, and being intentional about what earns a yes.",
+                author: {
+                  "@id": "https://codycooper.io/#person",
+                },
+                image: "https://codycooper.io/images/books/default-no.jpg",
+                url: "https://codycooper.io/books",
               },
-              url: "https://codycooper.io/books",
             },
             {
-              "@type": "Book",
+              "@type": "ListItem",
               position: 2,
-              name: "Talking To Your Boss",
-              description:
-                "A practical guide to communicating clearly with executives during cybersecurity incidents.",
-              author: {
-                "@id": "https://codycooper.io/#person",
+              item: {
+                "@type": "Book",
+                name: "Talking To Your Boss",
+                description:
+                  "A practical guide to communicating clearly with executives during cybersecurity incidents.",
+                author: {
+                  "@id": "https://codycooper.io/#person",
+                },
+                image:
+                  "https://codycooper.io/images/books/talking-to-your-boss.jpg",
+                url: "https://www.amazon.com/dp/B0GHTGTZ5Z",
               },
-              url: "https://www.amazon.com/dp/B0GHTGTZ5Z",
             },
           ],
         }
@@ -129,9 +138,9 @@ export default async function PagePage({ params }: PageProps) {
     <>
       <StructuredData data={bookSchema ? [pageSchema, bookSchema] : pageSchema} />
       <article className="prose py-6 dark:prose-invert">
-      <h1 className="text-center">{page.title}</h1>
-      {page.description && <p className="text-xl">{page.description}</p>}
-      <hr className="mx-auto w-56 border-stone-400" />
+        <h1 className="text-center">{page.title}</h1>
+        {page.description && <p className="text-xl">{page.description}</p>}
+        <hr className="mx-auto w-56 border-stone-400" />
         <Mdx code={page.body.code} />
       </article>
     </>
