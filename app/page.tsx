@@ -21,7 +21,7 @@ export default function Home() {
   );
 
   return (
-    <div className="prose dark:prose-invert">
+    <article className="prose py-6 dark:prose-invert">
       <h1 className="text-center">Articles</h1>
       {sortedPosts.map((post) => (
         <article key={post._id}>
@@ -36,6 +36,6 @@ export default function Home() {
           )}
         </article>
       ))}
-    </div>
+    </article>
   );
 }
