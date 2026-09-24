@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 
+import { NewsletterSignup } from "@/components/newsletter-signup";
+
 const description =
   "Get the 5 Checks before you say yes. Occasional notes on deliberate leadership decisions while I write Default: No.";
 
@@ -31,7 +33,7 @@ export default function Newsletter() {
         Roughly one email every week or two, only when there&apos;s something
         worth sending. Unsubscribe anytime.
       </p>
-      <div className="ml-embedded" data-form="QCyAqj" />
+      <NewsletterSignup className="mt-6 max-w-md" />
     </div>
   );
 }
