@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { allPages } from "contentlayer/generated";
 
 import { Mdx } from "@/components/mdx-components";
+import { StructuredData } from "@/components/structured-data";
 
 interface PageProps {
   params: {
@@ -31,6 +32,7 @@ export async function generateMetadata({
   }
 
   const canonicalPath = `/${page.slugAsParams}`;
+  const imageUrl = `/api/og?title=${encodeURIComponent(page.title)}`;
 
   return {
     title: page.title,
@@ -43,6 +45,20 @@ export async function generateMetadata({
       url: canonicalPath,
       title: page.title,
       description: page.description,
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: page.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.title,
+      description: page.description,
+      images: [imageUrl],
     },
   };
 }
@@ -60,12 +76,64 @@ export default async function PagePage({ params }: PageProps) {
     notFound();
   }
 
+  const canonicalUrl = `https://codycooper.io/${page.slugAsParams}`;
+  const pageSchema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonicalUrl}#webpage`,
+    url: canonicalUrl,
+    name: page.title,
+    description: page.description,
+    author: {
+      "@id": "https://codycooper.io/#person",
+    },
+    isPartOf: {
+      "@id": "https://codycooper.io/#website",
+    },
+  };
+
+  const bookSchema =
+    page.slugAsParams === "books"
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "Books by Cody Cooper",
+          itemListElement: [
+            {
+              "@type": "Book",
+              position: 1,
+              name: "Default: No",
+              description:
+                "A book about deliberate leadership decisions, protecting time, energy, and attention, and being intentional about what earns a yes.",
+              author: {
+                "@id": "https://codycooper.io/#person",
+              },
+              url: "https://codycooper.io/books",
+            },
+            {
+              "@type": "Book",
+              position: 2,
+              name: "Talking To Your Boss",
+              description:
+                "A practical guide to communicating clearly with executives during cybersecurity incidents.",
+              author: {
+                "@id": "https://codycooper.io/#person",
+              },
+              url: "https://www.amazon.com/dp/B0GHTGTZ5Z",
+            },
+          ],
+        }
+      : null;
+
   return (
-    <article className="prose py-6 dark:prose-invert">
+    <>
+      <StructuredData data={bookSchema ? [pageSchema, bookSchema] : pageSchema} />
+      <article className="prose py-6 dark:prose-invert">
       <h1 className="text-center">{page.title}</h1>
       {page.description && <p className="text-xl">{page.description}</p>}
       <hr className="mx-auto w-56 border-stone-400" />
-      <Mdx code={page.body.code} />
-    </article>
+        <Mdx code={page.body.code} />
+      </article>
+    </>
   );
 }
