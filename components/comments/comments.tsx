@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
 const COMMENTS_ID = "comments-container";
@@ -17,8 +17,12 @@ const GISCUS_CONFIG = {
   lang: "en",
 };
 
+function getGiscusTheme(theme: string | undefined) {
+  return theme === "dark" ? "transparent_dark" : "preferred_color_scheme";
+}
+
 export default function Giscus() {
-  const [canLoadComments, setCanLoadComments] = useState(true);
+  const [commentsLoaded, setCommentsLoaded] = useState(false);
   const { resolvedTheme } = useTheme();
 
   const loadComments = useCallback(() => {
@@ -27,8 +31,6 @@ export default function Giscus() {
     if (!comments || comments.querySelector("script, iframe")) {
       return;
     }
-
-    setCanLoadComments(false);
 
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
@@ -41,19 +43,38 @@ export default function Giscus() {
     script.setAttribute("data-emit-metadata", GISCUS_CONFIG.metadata);
     script.setAttribute("data-input-position", GISCUS_CONFIG.inputPosition);
     script.setAttribute("data-lang", GISCUS_CONFIG.lang);
-    script.setAttribute(
-      "data-theme",
-      resolvedTheme === "dark" ? "transparent_dark" : "preferred_color_scheme"
-    );
+    script.setAttribute("data-theme", getGiscusTheme(resolvedTheme));
     script.setAttribute("crossorigin", "anonymous");
     script.async = true;
 
     comments.appendChild(script);
+    setCommentsLoaded(true);
   }, [resolvedTheme]);
+
+  useEffect(() => {
+    if (!commentsLoaded) {
+      return;
+    }
+
+    const iframe = document.querySelector<HTMLIFrameElement>(
+      "iframe.giscus-frame"
+    );
+
+    iframe?.contentWindow?.postMessage(
+      {
+        giscus: {
+          setConfig: {
+            theme: getGiscusTheme(resolvedTheme),
+          },
+        },
+      },
+      "https://giscus.app"
+    );
+  }, [commentsLoaded, resolvedTheme]);
 
   return (
     <div className="py-6 text-center text-gray-800 dark:text-gray-200">
-      {canLoadComments && (
+      {!commentsLoaded && (
         <button type="button" onClick={loadComments}>
           Load Comments
         </button>
