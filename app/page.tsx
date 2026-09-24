@@ -7,6 +7,24 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Articles",
+    images: [
+      {
+        url: "/api/og?title=Articles",
+        width: 1200,
+        height: 630,
+        alt: "Articles",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Articles",
+    images: ["/api/og?title=Articles"],
+  },
 };
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
