@@ -1,50 +1,32 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allPosts } from "contentlayer/generated";
 
-import { Mdx } from "@/components/mdx-components";
+import { allPosts, getPost } from "@/lib/content";
 import { StructuredData } from "@/components/structured-data";
 
 import PostFooter from "./footer";
 import "./prism.css";
 
 interface PostProps {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
-interface PostParams {
-  post: (typeof allPosts)[number];
-  fileName: string;
-}
-
-async function getPostFromParams(
-  params: PostProps["params"]
-): Promise<PostParams | null> {
-  const slug = params?.slug?.join("/");
-  const post = allPosts.find((post) => post.slugAsParams === slug);
-
-  if (!post) {
-    return null;
-  }
-
-  return {
-    post,
-    fileName: slug.split("/").pop() ?? "",
-  };
+async function getPostFromParams(params: PostProps["params"]) {
+  const { slug } = await params;
+  return getPost(slug?.join("/"));
 }
 
 export async function generateMetadata({
   params,
 }: PostProps): Promise<Metadata> {
-  const result = await getPostFromParams(params);
+  const post = await getPostFromParams(params);
 
-  if (!result) {
+  if (!post) {
     return {};
   }
 
-  const { post } = result;
   const imageUrl = `/api/og?title=${encodeURIComponent(post.title)}`;
 
   return {
@@ -78,21 +60,20 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams(): Promise<PostProps["params"][]> {
+export function generateStaticParams() {
   return allPosts.map((post) => ({
     slug: post.slugAsParams.split("/"),
   }));
 }
 
 export default async function PostPage({ params }: PostProps) {
-  const result = await getPostFromParams(params);
+  const post = await getPostFromParams(params);
 
-  if (!result) {
+  if (!post) {
     notFound();
   }
 
-  const { post, fileName } = result;
-
+  const { Content } = post;
   const canonicalUrl = `https://codycooper.io${post.slug}`;
   const imageUrl = `https://codycooper.io/api/og?title=${encodeURIComponent(
     post.title
@@ -121,10 +102,10 @@ export default async function PostPage({ params }: PostProps) {
       <article className="prose py-6 dark:prose-invert">
         <h1 className="mb-2">{post.title}</h1>
         {post.description && <p className="mt-0 text-lg">{post.description}</p>}
-        <hr className="mx-auto w-56 border-stone-400" />
-        <Mdx code={post.body.code} />
+        <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
+        <Content />
       </article>
-      <PostFooter allPosts={allPosts} post={post} postName={fileName} />
+      <PostFooter allPosts={allPosts} post={post} />
     </>
   );
 }
