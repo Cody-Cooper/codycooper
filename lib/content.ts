@@ -1,9 +1,25 @@
 import type { ComponentType } from "react";
 
-type MdxModule<T> = {
-  default: ComponentType;
-  frontmatter: T;
-};
+import About, { frontmatter as aboutFrontmatter } from "@/content/pages/about.mdx";
+import Books, { frontmatter as booksFrontmatter } from "@/content/pages/books.mdx";
+import FlareVmPart1, {
+  frontmatter as flareVmPart1Frontmatter,
+} from "@/content/posts/flare-vm-part-1.mdx";
+import KnownForSayingNo, {
+  frontmatter as knownForSayingNoFrontmatter,
+} from "@/content/posts/known-for-saying-no.mdx";
+import PlexKillstream, {
+  frontmatter as plexKillstreamFrontmatter,
+} from "@/content/posts/plex-killstream.mdx";
+import RaspberryPiCustomMotd, {
+  frontmatter as raspberryPiCustomMotdFrontmatter,
+} from "@/content/posts/raspberry-pi-custom-MOTD.mdx";
+import UnraidDynamicDns, {
+  frontmatter as unraidDynamicDnsFrontmatter,
+} from "@/content/posts/unraid-dynamic-dns.mdx";
+import UnraidUmami, {
+  frontmatter as unraidUmamiFrontmatter,
+} from "@/content/posts/unraid-umami.mdx";
 
 export interface PageDocument {
   title: string;
@@ -17,51 +33,63 @@ export interface PostDocument extends PageDocument {
   date: string;
 }
 
-const pageModules = import.meta.glob("../content/pages/*.mdx", {
-  eager: true,
-}) as Record<string, MdxModule<{ title: string; description?: string }>>;
+type PageFrontmatter = {
+  title: string;
+  description?: string;
+};
 
-const postModules = import.meta.glob("../content/posts/*.mdx", {
-  eager: true,
-}) as Record<
-  string,
-  MdxModule<{ title: string; description?: string; date: string }>
->;
+type PostFrontmatter = PageFrontmatter & {
+  date: string;
+};
 
-function fileSlug(path: string) {
-  return path.split("/").pop()?.replace(/\.mdx$/, "") ?? "";
+function page(
+  slugAsParams: string,
+  frontmatter: PageFrontmatter,
+  Content: ComponentType
+): PageDocument {
+  return {
+    ...frontmatter,
+    slug: `/${slugAsParams}`,
+    slugAsParams,
+    Content,
+  };
 }
 
-export const allPages: PageDocument[] = Object.entries(pageModules).map(
-  ([path, module]) => {
-    const slugAsParams = fileSlug(path);
+function post(
+  slugAsParams: string,
+  frontmatter: PostFrontmatter,
+  Content: ComponentType
+): PostDocument {
+  return {
+    ...frontmatter,
+    slug: `/posts/${slugAsParams}`,
+    slugAsParams,
+    Content,
+  };
+}
 
-    return {
-      ...module.frontmatter,
-      slug: `/${slugAsParams}`,
-      slugAsParams,
-      Content: module.default,
-    };
-  }
-);
+export const allPages: PageDocument[] = [
+  page("about", aboutFrontmatter, About),
+  page("books", booksFrontmatter, Books),
+];
 
-export const allPosts: PostDocument[] = Object.entries(postModules).map(
-  ([path, module]) => {
-    const slugAsParams = fileSlug(path);
-
-    return {
-      ...module.frontmatter,
-      slug: `/posts/${slugAsParams}`,
-      slugAsParams,
-      Content: module.default,
-    };
-  }
-);
+export const allPosts: PostDocument[] = [
+  post("flare-vm-part-1", flareVmPart1Frontmatter, FlareVmPart1),
+  post("known-for-saying-no", knownForSayingNoFrontmatter, KnownForSayingNo),
+  post("plex-killstream", plexKillstreamFrontmatter, PlexKillstream),
+  post(
+    "raspberry-pi-custom-MOTD",
+    raspberryPiCustomMotdFrontmatter,
+    RaspberryPiCustomMotd
+  ),
+  post("unraid-dynamic-dns", unraidDynamicDnsFrontmatter, UnraidDynamicDns),
+  post("unraid-umami", unraidUmamiFrontmatter, UnraidUmami),
+];
 
 export function getPage(slug: string) {
-  return allPages.find((page) => page.slugAsParams === slug) ?? null;
+  return allPages.find((item) => item.slugAsParams === slug) ?? null;
 }
 
 export function getPost(slug: string) {
-  return allPosts.find((post) => post.slugAsParams === slug) ?? null;
+  return allPosts.find((item) => item.slugAsParams === slug) ?? null;
 }
