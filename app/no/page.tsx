@@ -121,13 +121,14 @@ export default function DefaultNoLandingPage() {
               href={ARC_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-[#292524] px-8 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
+              className="inline-flex min-w-[190px] items-center justify-center rounded-md bg-[#292524] px-8 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
             >
               Request an ARC
             </a>
 
             <p className="mt-3 text-sm !text-[#78716c] dark:!text-[#a8a29e]">
-              Apply through StoryOrigin. EPUB, MOBI, and PDF formats available.
+              StoryOrigin handles the application and file delivery. EPUB,
+              MOBI, and PDF available.
             </p>
           </div>
         </section>
@@ -180,6 +181,17 @@ export default function DefaultNoLandingPage() {
               </article>
             ))}
           </div>
+
+          <div className="mt-7 text-center">
+            <a
+              href={ARC_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold !text-[#44403c] underline decoration-[#a8a29e] underline-offset-4 transition-opacity hover:opacity-70 dark:!text-[#d6d3d1]"
+            >
+              Interested in reading it? Request the ARC →
+            </a>
+          </div>
         </section>
 
         <section className="mx-auto mt-20 grid max-w-4xl gap-10 border-y border-[#a8a29e] py-14 md:grid-cols-2 md:gap-16 sm:mt-24 dark:border-[#57534e]">
@@ -192,7 +204,7 @@ export default function DefaultNoLandingPage() {
             </h2>
           </div>
 
-          <div className="space-y-4 text-base leading-7 !text-[#57534e] dark:!text-[#d6d3d1]">
+          <div className="space-y-5 text-[17px] leading-8 !text-[#57534e] dark:!text-[#d6d3d1]">
             <p className="m-0">
               Workplace scenarios, short exercises, and examples of what to say
               when a request does not deserve a yes.
@@ -209,7 +221,7 @@ export default function DefaultNoLandingPage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-16 max-w-3xl rounded-2xl border border-[#c7c2bd] bg-white/35 px-6 py-12 text-center shadow-sm sm:px-10 sm:py-14 dark:border-[#57534e] dark:bg-[#1c1917]/35">
+        <section className="mx-auto mt-16 max-w-4xl rounded-2xl border border-[#c7c2bd] bg-white/45 px-7 py-12 text-center shadow-sm sm:px-12 sm:py-14 dark:border-[#57534e] dark:bg-[#1c1917]/40">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] !text-[#78716c] dark:!text-[#a8a29e]">
             Read it before publication
           </p>
@@ -217,16 +229,17 @@ export default function DefaultNoLandingPage() {
             Request an advance review copy.
           </h2>
           <p className="mx-auto mb-7 max-w-2xl text-lg leading-8 !text-[#57534e] dark:!text-[#d6d3d1]">
-            I&apos;m looking for early readers willing to read <i>Default: No</i>
-            and leave an honest review. StoryOrigin handles the application and
-            delivery so you can choose the format that works for you.
+            If the premise sounds useful to you, I&apos;m looking for early readers
+            willing to read <i>Default: No</i> and leave an honest review.
+            StoryOrigin handles the application and delivery, and you can
+            choose the format that works for you.
           </p>
 
           <a
             href={ARC_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-[#292524] px-8 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
+            className="inline-flex min-w-[220px] items-center justify-center rounded-md bg-[#292524] px-9 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
           >
             Request on StoryOrigin
           </a>
