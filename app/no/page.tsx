@@ -121,7 +121,7 @@ export default function DefaultNoLandingPage() {
               href={ARC_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-[#292524] px-6 py-3.5 text-base font-semibold !text-[#f5f5f4] no-underline transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
+              className="inline-flex items-center justify-center rounded-md bg-[#292524] px-8 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
             >
               Request an ARC
             </a>
@@ -162,7 +162,11 @@ export default function DefaultNoLandingPage() {
             {checks.map((check) => (
               <article
                 key={check.number}
-                className="rounded-xl border border-[#c7c2bd] bg-white/35 p-6 shadow-sm backdrop-blur-sm dark:border-[#57534e] dark:bg-[#1c1917]/35"
+                className={`rounded-xl border border-[#c7c2bd] bg-white/35 p-6 shadow-sm backdrop-blur-sm dark:border-[#57534e] dark:bg-[#1c1917]/35 ${
+                  check.number === "05"
+                    ? "md:col-span-2 md:mx-auto md:w-[calc(50%-0.625rem)]"
+                    : ""
+                }`}
               >
                 <p className="mb-4 text-sm font-bold tracking-[0.18em] !text-[#a8a29e] dark:!text-[#78716c]">
                   {check.number}
@@ -205,7 +209,7 @@ export default function DefaultNoLandingPage() {
           </div>
         </section>
 
-        <section className="mx-auto mt-20 max-w-3xl text-center sm:mt-24">
+        <section className="mx-auto mt-16 max-w-3xl rounded-2xl border border-[#c7c2bd] bg-white/35 px-6 py-12 text-center shadow-sm sm:px-10 sm:py-14 dark:border-[#57534e] dark:bg-[#1c1917]/35">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] !text-[#78716c] dark:!text-[#a8a29e]">
             Read it before publication
           </p>
@@ -222,7 +226,7 @@ export default function DefaultNoLandingPage() {
             href={ARC_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-[#292524] px-7 py-3.5 text-base font-semibold !text-[#f5f5f4] no-underline transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
+            className="inline-flex items-center justify-center rounded-md bg-[#292524] px-8 py-4 text-base font-semibold !text-[#f5f5f4] no-underline shadow-sm transition-opacity hover:opacity-85 dark:bg-[#d6d3d1] dark:!text-[#1c1917]"
           >
             Request on StoryOrigin
           </a>
@@ -232,7 +236,7 @@ export default function DefaultNoLandingPage() {
           </p>
         </section>
 
-        <section className="mt-20 text-center sm:mt-24">
+        <section className="mt-10 text-center sm:mt-12">
           <p className="text-sm !text-[#78716c] dark:!text-[#a8a29e]">
             Want updates instead?{" "}
             <Link
