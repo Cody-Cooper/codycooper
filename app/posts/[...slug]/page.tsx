@@ -1,8 +1,10 @@
+import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { allPosts, getPost } from "@/lib/content";
+import { mdxComponents } from "@/components/mdx-components";
 import { StructuredData } from "@/components/structured-data";
+import { allPosts, getPost } from "@/lib/content";
 
 import PostFooter from "./footer";
 import "./prism.css";
@@ -73,7 +75,6 @@ export default async function PostPage({ params }: PostProps) {
     notFound();
   }
 
-  const { Content } = post;
   const canonicalUrl = `https://codycooper.io${post.slug}`;
   const imageUrl = `https://codycooper.io/api/og?title=${encodeURIComponent(
     post.title
@@ -103,7 +104,7 @@ export default async function PostPage({ params }: PostProps) {
         <h1 className="mb-2">{post.title}</h1>
         {post.description && <p className="mt-0 text-lg">{post.description}</p>}
         <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
-        <Content />
+        <MDXContent code={post.mdx} components={mdxComponents} />
       </article>
       <PostFooter allPosts={allPosts} post={post} />
     </>
