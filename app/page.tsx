@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { allPosts } from "@/.contentlayer/generated";
+import { allPosts } from "@/lib/content";
 
 export const metadata: Metadata = {
   alternates: {
@@ -42,7 +42,7 @@ export default function Home() {
     <article className="prose py-6 dark:prose-invert">
       <h1 className="text-center">Articles</h1>
       {sortedPosts.map((post) => (
-        <article key={post._id}>
+        <article key={post.slug}>
           <Link href={post.slug}>
             <h2>{post.title}</h2>
           </Link>
