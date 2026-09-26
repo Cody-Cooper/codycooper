@@ -2,13 +2,11 @@ import Link from "next/link";
 
 import Comment from "@/components/comments/comments";
 import { NewsletterSignup } from "@/components/newsletter-signup";
-
-import { FileName, Post } from "./page.types";
+import type { PostDocument } from "@/lib/content";
 
 interface Props {
-  allPosts: Post[];
-  post: Post;
-  postName: FileName;
+  allPosts: PostDocument[];
+  post: PostDocument;
 }
 
 export default function PostFooter({ allPosts, post }: Props) {
@@ -40,7 +38,7 @@ export default function PostFooter({ allPosts, post }: Props) {
         <NewsletterSignup className="mx-auto max-w-md" />
       </div>
 
-      <hr className="mx-auto w-56 border-stone-400" />
+      <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
 
       <div className="flex justify-center py-6 text-sm !text-[#292524] dark:!text-[#d6d3d1]">
         <div>
@@ -64,9 +62,9 @@ export default function PostFooter({ allPosts, post }: Props) {
         </div>
       </div>
 
-      <hr className="mx-auto w-56 border-stone-400" />
+      <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
       <Comment />
-      <hr className="mx-auto w-56 border-stone-400" />
+      <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
 
       <div className="divide-gray-200 py-6 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
         {(next || prev) && (
@@ -76,7 +74,7 @@ export default function PostFooter({ allPosts, post }: Props) {
                 <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                   Previous Article
                 </h2>
-                <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                <div>
                   <Link href={prev.slug}>{prev.title}</Link>
                 </div>
               </div>
@@ -86,7 +84,7 @@ export default function PostFooter({ allPosts, post }: Props) {
                 <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
                   Next Article
                 </h2>
-                <div className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400">
+                <div>
                   <Link href={next.slug}>{next.title}</Link>
                 </div>
               </div>

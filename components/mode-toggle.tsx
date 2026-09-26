@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 
-// @ts-expect-error nightwind/helper does not ship TypeScript declarations.
-import nightwind from "nightwind/helper";
-
 export function ModeToggle() {
   const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
@@ -14,18 +11,13 @@ export function ModeToggle() {
 
   const isDark = mounted && resolvedTheme === "dark";
 
-  const toggleTheme = () => {
-    nightwind.beforeTransition();
-    setTheme(isDark ? "light" : "dark");
-  };
-
   return (
     <button
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
       type="button"
       className="h-8 w-8 rounded"
-      onClick={toggleTheme}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

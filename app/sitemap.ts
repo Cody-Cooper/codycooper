@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { allPages, allPosts } from "contentlayer/generated";
+import { allPages, allPosts } from "@/lib/content";
 
 const baseUrl = "https://codycooper.io";
 
@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl },
     { url: `${baseUrl}/newsletter` },
+    { url: `${baseUrl}/no` },
     ...pages,
     ...posts,
   ];
