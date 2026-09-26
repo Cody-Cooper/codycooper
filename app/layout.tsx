@@ -54,6 +54,14 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Cody Cooper — Articles"
+          href="/rss.xml"
+        />
+      </head>
       <body
         className={`min-h-screen bg-stone-200 text-stone-800 antialiased transition-colors dark:bg-stone-900 dark:text-stone-200 ${inter.className}`}
       >
