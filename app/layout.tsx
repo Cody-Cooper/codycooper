@@ -4,8 +4,8 @@ import Link from "next/link";
 
 import { Analytics } from "@/components/analytics";
 import { ModeToggle } from "@/components/mode-toggle";
-import { ThemeProvider } from "@/components/theme-provider";
 import { StructuredData } from "@/components/structured-data";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import "./globals.css";
 
@@ -52,15 +52,16 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`min-h-screen bg-stone-200 text-stone-800 antialiased ${inter.className}`}
+        className={`min-h-screen bg-stone-200 text-stone-800 antialiased transition-colors dark:bg-stone-900 dark:text-stone-200 ${inter.className}`}
       >
         <ThemeProvider
           attribute="class"
           storageKey="nightwind-mode"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
+          disableTransitionOnChange
         >
           <StructuredData
             data={[
