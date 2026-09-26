@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { type FormEvent, useId, useState } from "react";
 
 interface NewsletterSignupProps {
   className?: string;
@@ -11,6 +11,7 @@ type SubmitState = "idle" | "submitting" | "success" | "error";
 export function NewsletterSignup({
   className = "",
 }: NewsletterSignupProps) {
+  const id = useId();
   const [email, setEmail] = useState("");
   const [website, setWebsite] = useState("");
   const [submitState, setSubmitState] = useState<SubmitState>("idle");
@@ -58,14 +59,13 @@ export function NewsletterSignup({
     <form
       className={`not-prose ${className}`.trim()}
       onSubmit={handleSubmit}
-      noValidate
     >
       <div className="flex flex-col gap-3 sm:flex-row">
-        <label className="sr-only" htmlFor="newsletter-email">
+        <label className="sr-only" htmlFor={`${id}-email`}>
           Email address
         </label>
         <input
-          id="newsletter-email"
+          id={`${id}-email`}
           name="email"
           type="email"
           inputMode="email"
@@ -80,9 +80,9 @@ export function NewsletterSignup({
         />
 
         <div className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
-          <label htmlFor="newsletter-website">Website</label>
+          <label htmlFor={`${id}-website`}>Website</label>
           <input
-            id="newsletter-website"
+            id={`${id}-website`}
             name="website"
             type="text"
             tabIndex={-1}

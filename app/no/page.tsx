@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { siteUrl } from "@/lib/site";
 import { StructuredData } from "@/components/structured-data";
 
 const ARC_URL =
@@ -73,10 +74,10 @@ export default function DefaultNoLandingPage() {
     name: "Default: No",
     description,
     author: {
-      "@id": "https://codycooper.io/#person",
+      "@id": `${siteUrl}/#person`,
     },
-    image: "https://codycooper.io/images/books/default-no.jpg",
-    url: "https://codycooper.io/no",
+    image: `${siteUrl}/images/books/default-no.jpg`,
+    url: `${siteUrl}/no`,
   };
 
   return (

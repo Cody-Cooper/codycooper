@@ -74,12 +74,12 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify(payload),
       cache: "no-store",
+      signal: AbortSignal.timeout(10_000),
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
       console.error(
-        `MailerLite signup failed with status ${response.status}: ${errorText}`
+        `MailerLite signup failed with status ${response.status}`
       );
 
       return NextResponse.json(

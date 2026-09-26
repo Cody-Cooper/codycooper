@@ -1,23 +1,22 @@
 import type { MetadataRoute } from "next";
 
+import { siteUrl } from "@/lib/site";
 import { allPages, allPosts } from "@/lib/content";
-
-const baseUrl = "https://codycooper.io";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = allPages.map((page) => ({
-    url: `${baseUrl}/${page.slugAsParams}`,
+    url: `${siteUrl}/${page.slugAsParams}`,
   }));
 
   const posts = allPosts.map((post) => ({
-    url: `${baseUrl}${post.slug}`,
+    url: `${siteUrl}${post.slug}`,
     lastModified: new Date(post.date),
   }));
 
   return [
-    { url: baseUrl },
-    { url: `${baseUrl}/newsletter` },
-    { url: `${baseUrl}/no` },
+    { url: siteUrl },
+    { url: `${siteUrl}/newsletter` },
+    { url: `${siteUrl}/no` },
     ...pages,
     ...posts,
   ];

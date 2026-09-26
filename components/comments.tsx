@@ -1,9 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
-
-const COMMENTS_ID = "comments-container";
 
 const GISCUS_CONFIG = {
   repo: process.env.NEXT_PUBLIC_GISCUS_REPO ?? "",
@@ -18,15 +16,20 @@ const GISCUS_CONFIG = {
 };
 
 function getGiscusTheme(theme: string | undefined) {
-  return theme === "dark" ? "transparent_dark" : "preferred_color_scheme";
+  return theme === "dark" ? "transparent_dark" : "light";
 }
 
-export default function Giscus() {
+const isConfigured = Boolean(
+  GISCUS_CONFIG.repo && GISCUS_CONFIG.repositoryId && GISCUS_CONFIG.categoryId
+);
+
+export function Comments() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [commentsLoaded, setCommentsLoaded] = useState(false);
   const { resolvedTheme } = useTheme();
 
-  const loadComments = useCallback(() => {
-    const comments = document.getElementById(COMMENTS_ID);
+  function loadComments() {
+    const comments = containerRef.current;
 
     if (!comments || comments.querySelector("script, iframe")) {
       return;
@@ -49,14 +52,14 @@ export default function Giscus() {
 
     comments.appendChild(script);
     setCommentsLoaded(true);
-  }, [resolvedTheme]);
+  }
 
   useEffect(() => {
     if (!commentsLoaded) {
       return;
     }
 
-    const iframe = document.querySelector<HTMLIFrameElement>(
+    const iframe = containerRef.current?.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
 
@@ -72,6 +75,10 @@ export default function Giscus() {
     );
   }, [commentsLoaded, resolvedTheme]);
 
+  if (!isConfigured) {
+    return null;
+  }
+
   return (
     <div className="py-6 text-center text-gray-800 dark:text-gray-200">
       {!commentsLoaded && (
@@ -79,7 +86,7 @@ export default function Giscus() {
           Load Comments
         </button>
       )}
-      <div className="giscus" id={COMMENTS_ID} />
+      <div className="giscus" ref={containerRef} />
     </div>
   );
 }
