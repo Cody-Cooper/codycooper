@@ -1,23 +1,20 @@
 import Link from "next/link";
 
-import Comment from "@/components/comments/comments";
+import { siteUrl } from "@/lib/site";
+import { Comments } from "@/components/comments";
 import { NewsletterSignup } from "@/components/newsletter-signup";
-import type { PostDocument } from "@/lib/content";
+import { allPosts, type PostDocument } from "@/lib/content";
 
 interface Props {
-  allPosts: PostDocument[];
   post: PostDocument;
 }
 
-export default function PostFooter({ allPosts, post }: Props) {
-  const sortedPosts = [...allPosts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-  const postIndex = sortedPosts.findIndex((item) => item.slug === post.slug);
-  const prev = sortedPosts[postIndex + 1] ?? null;
-  const next = sortedPosts[postIndex - 1] ?? null;
+export default function PostFooter({ post }: Props) {
+  const postIndex = allPosts.findIndex((item) => item.slug === post.slug);
+  const prev = allPosts[postIndex + 1] ?? null;
+  const next = allPosts[postIndex - 1] ?? null;
 
-  const postUrl = `https://codycooper.io${post.slug}`;
+  const postUrl = `${siteUrl}${post.slug}`;
   const shareTwitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(
     post.title
   )}&url=${encodeURIComponent(postUrl)}`;
@@ -63,7 +60,7 @@ export default function PostFooter({ allPosts, post }: Props) {
       </div>
 
       <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
-      <Comment />
+      <Comments key={post.slug} />
       <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
 
       <div className="divide-gray-200 py-6 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">

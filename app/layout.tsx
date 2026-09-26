@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 
+import { siteUrl } from "@/lib/site";
 import { Analytics } from "@/components/analytics";
 import { ModeToggle } from "@/components/mode-toggle";
 import { StructuredData } from "@/components/structured-data";
@@ -15,13 +16,13 @@ const siteDescription =
   "Author of Talking To Your Boss. Writing Default: No, a book on deliberate leadership decisions. Every yes spends something.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codycooper.io"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Cody Cooper",
     template: "%s | Cody Cooper",
   },
   description: siteDescription,
-  authors: [{ name: "Cody Cooper", url: "https://codycooper.io" }],
+  authors: [{ name: "Cody Cooper", url: siteUrl }],
   creator: "Cody Cooper",
   openGraph: {
     type: "website",
@@ -68,20 +69,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
               {
                 "@context": "https://schema.org",
                 "@type": "Person",
-                "@id": "https://codycooper.io/#person",
+                "@id": `${siteUrl}/#person`,
                 name: "Cody Cooper",
-                url: "https://codycooper.io",
+                url: siteUrl,
                 jobTitle: "Author",
               },
               {
                 "@context": "https://schema.org",
                 "@type": "WebSite",
-                "@id": "https://codycooper.io/#website",
-                url: "https://codycooper.io",
+                "@id": `${siteUrl}/#website`,
+                url: siteUrl,
                 name: "Cody Cooper",
                 description: siteDescription,
                 author: {
-                  "@id": "https://codycooper.io/#person",
+                  "@id": `${siteUrl}/#person`,
                 },
               },
             ]}

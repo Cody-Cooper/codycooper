@@ -2,6 +2,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { siteUrl } from "@/lib/site";
 import { mdxComponents } from "@/components/mdx-components";
 import { StructuredData } from "@/components/structured-data";
 import { allPages, getPage } from "@/lib/content";
@@ -14,7 +15,7 @@ interface PageProps {
 
 async function getPageFromParams(params: PageProps["params"]) {
   const { slug } = await params;
-  return getPage(slug?.join("/"));
+  return getPage(slug.join("/"));
 }
 
 export async function generateMetadata({
@@ -64,14 +65,14 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function PagePage({ params }: PageProps) {
+export default async function ContentPage({ params }: PageProps) {
   const page = await getPageFromParams(params);
 
   if (!page) {
     notFound();
   }
 
-  const canonicalUrl = `https://codycooper.io/${page.slugAsParams}`;
+  const canonicalUrl = `${siteUrl}/${page.slugAsParams}`;
   const pageSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -80,10 +81,10 @@ export default async function PagePage({ params }: PageProps) {
     name: page.title,
     description: page.description,
     author: {
-      "@id": "https://codycooper.io/#person",
+      "@id": `${siteUrl}/#person`,
     },
     isPartOf: {
-      "@id": "https://codycooper.io/#website",
+      "@id": `${siteUrl}/#website`,
     },
   };
 
@@ -103,10 +104,10 @@ export default async function PagePage({ params }: PageProps) {
                 description:
                   "A book about deliberate leadership decisions, protecting time, energy, and attention, and being intentional about what earns a yes.",
                 author: {
-                  "@id": "https://codycooper.io/#person",
+                  "@id": `${siteUrl}/#person`,
                 },
-                image: "https://codycooper.io/images/books/default-no.jpg",
-                url: "https://codycooper.io/no",
+                image: `${siteUrl}/images/books/default-no.jpg`,
+                url: `${siteUrl}/no`,
               },
             },
             {
@@ -118,10 +119,10 @@ export default async function PagePage({ params }: PageProps) {
                 description:
                   "A practical guide to communicating clearly with executives during cybersecurity incidents.",
                 author: {
-                  "@id": "https://codycooper.io/#person",
+                  "@id": `${siteUrl}/#person`,
                 },
                 image:
-                  "https://codycooper.io/images/books/talking-to-your-boss.jpg",
+                  `${siteUrl}/images/books/talking-to-your-boss.jpg`,
                 url: "https://www.amazon.com/dp/B0GHTGTZ5Z",
               },
             },

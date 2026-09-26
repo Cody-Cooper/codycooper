@@ -40,7 +40,7 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    date: z.string(),
+    date: z.iso.date(),
     content: z.string(),
   }),
   transform: async (document, context) => {

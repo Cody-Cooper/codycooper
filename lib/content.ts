@@ -4,9 +4,11 @@ import {
 } from "content-collections";
 
 export const allPages = generatedPages;
-export const allPosts = generatedPosts;
+// Keep the index and adjacent-article links in the same newest-first order.
+export const allPosts = [...generatedPosts].sort(
+  (a, b) => b.date.localeCompare(a.date) || a.slug.localeCompare(b.slug)
+);
 
-export type PageDocument = (typeof allPages)[number];
 export type PostDocument = (typeof allPosts)[number];
 
 export function getPage(slug: string) {

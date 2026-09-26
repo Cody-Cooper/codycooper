@@ -2,6 +2,7 @@ import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { siteUrl } from "@/lib/site";
 import { mdxComponents } from "@/components/mdx-components";
 import { StructuredData } from "@/components/structured-data";
 import { allPosts, getPost } from "@/lib/content";
@@ -17,7 +18,7 @@ interface PostProps {
 
 async function getPostFromParams(params: PostProps["params"]) {
   const { slug } = await params;
-  return getPost(slug?.join("/"));
+  return getPost(slug.join("/"));
 }
 
 export async function generateMetadata({
@@ -75,8 +76,8 @@ export default async function PostPage({ params }: PostProps) {
     notFound();
   }
 
-  const canonicalUrl = `https://codycooper.io${post.slug}`;
-  const imageUrl = `https://codycooper.io/api/og?title=${encodeURIComponent(
+  const canonicalUrl = `${siteUrl}${post.slug}`;
+  const imageUrl = `${siteUrl}/api/og?title=${encodeURIComponent(
     post.title
   )}`;
 
@@ -90,10 +91,10 @@ export default async function PostPage({ params }: PostProps) {
     mainEntityOfPage: canonicalUrl,
     image: imageUrl,
     author: {
-      "@id": "https://codycooper.io/#person",
+      "@id": `${siteUrl}/#person`,
     },
     publisher: {
-      "@id": "https://codycooper.io/#person",
+      "@id": `${siteUrl}/#person`,
     },
   };
 
@@ -106,7 +107,7 @@ export default async function PostPage({ params }: PostProps) {
         <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
         <MDXContent code={post.mdx} components={mdxComponents} />
       </article>
-      <PostFooter allPosts={allPosts} post={post} />
+      <PostFooter post={post} />
     </>
   );
 }

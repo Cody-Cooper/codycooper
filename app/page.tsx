@@ -31,17 +31,14 @@ const dateFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
   month: "long",
   day: "numeric",
+  timeZone: "UTC",
 });
 
 export default function Home() {
-  const sortedPosts = [...allPosts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
   return (
     <article className="prose py-6 dark:prose-invert">
       <h1 className="text-center">Articles</h1>
-      {sortedPosts.map((post) => (
+      {allPosts.map((post) => (
         <article key={post.slug}>
           <Link href={post.slug}>
             <h2>{post.title}</h2>

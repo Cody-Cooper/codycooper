@@ -1,11 +1,9 @@
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 
-export const runtime = "edge";
-
 export function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "Cody Cooper";
+  const title = searchParams.get("title")?.trim().slice(0, 200) || "Cody Cooper";
 
   return new ImageResponse(
     (

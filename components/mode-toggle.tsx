@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 
-export function ModeToggle() {
-  const [mounted, setMounted] = useState(false);
-  const { resolvedTheme, setTheme } = useTheme();
+// The server cannot know the browser's saved theme.
+const subscribe = () => () => {};
 
-  useEffect(() => setMounted(true), []);
+export function ModeToggle() {
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
+  const { resolvedTheme, setTheme } = useTheme();
 
   const isDark = mounted && resolvedTheme === "dark";
 
@@ -15,6 +16,7 @@ export function ModeToggle() {
     <button
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       aria-pressed={isDark}
+      disabled={!mounted}
       type="button"
       className="h-8 w-8 rounded"
       onClick={() => setTheme(isDark ? "light" : "dark")}
