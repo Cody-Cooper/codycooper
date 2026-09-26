@@ -1,25 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allPages } from "contentlayer/generated";
 
-import { Mdx } from "@/components/mdx-components";
+import { allPages, getPage } from "@/lib/content";
 import { StructuredData } from "@/components/structured-data";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string[];
-  };
+  }>;
 }
 
 async function getPageFromParams(params: PageProps["params"]) {
-  const slug = params?.slug?.join("/");
-  const page = allPages.find((page) => page.slugAsParams === slug);
-
-  if (!page) {
-    return null;
-  }
-
-  return page;
+  const { slug } = await params;
+  return getPage(slug?.join("/"));
 }
 
 export async function generateMetadata({
@@ -63,7 +56,7 @@ export async function generateMetadata({
   };
 }
 
-export async function generateStaticParams(): Promise<PageProps["params"][]> {
+export function generateStaticParams() {
   return allPages.map((page) => ({
     slug: page.slugAsParams.split("/"),
   }));
@@ -76,6 +69,7 @@ export default async function PagePage({ params }: PageProps) {
     notFound();
   }
 
+  const { Content } = page;
   const canonicalUrl = `https://codycooper.io/${page.slugAsParams}`;
   const pageSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -111,7 +105,7 @@ export default async function PagePage({ params }: PageProps) {
                   "@id": "https://codycooper.io/#person",
                 },
                 image: "https://codycooper.io/images/books/default-no.jpg",
-                url: "https://codycooper.io/books",
+                url: "https://codycooper.io/no",
               },
             },
             {
@@ -140,8 +134,8 @@ export default async function PagePage({ params }: PageProps) {
       <article className="prose py-6 dark:prose-invert">
         <h1 className="text-center">{page.title}</h1>
         {page.description && <p className="text-xl">{page.description}</p>}
-        <hr className="mx-auto w-56 border-stone-400" />
-        <Mdx code={page.body.code} />
+        <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
+        <Content />
       </article>
     </>
   );
