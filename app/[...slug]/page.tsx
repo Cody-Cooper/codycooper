@@ -1,8 +1,10 @@
+import { MDXContent } from "@content-collections/mdx/react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { allPages, getPage } from "@/lib/content";
+import { mdxComponents } from "@/components/mdx-components";
 import { StructuredData } from "@/components/structured-data";
+import { allPages, getPage } from "@/lib/content";
 
 interface PageProps {
   params: Promise<{
@@ -69,7 +71,6 @@ export default async function PagePage({ params }: PageProps) {
     notFound();
   }
 
-  const { Content } = page;
   const canonicalUrl = `https://codycooper.io/${page.slugAsParams}`;
   const pageSchema: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -135,7 +136,7 @@ export default async function PagePage({ params }: PageProps) {
         <h1 className="text-center">{page.title}</h1>
         {page.description && <p className="text-xl">{page.description}</p>}
         <hr className="mx-auto w-56 border-stone-400 dark:border-stone-600" />
-        <Content />
+        <MDXContent code={page.mdx} components={mdxComponents} />
       </article>
     </>
   );
