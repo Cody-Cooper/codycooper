@@ -1,0 +1,44 @@
+---
+title: "I Almost Automated a Report Nobody Needed"
+date: "2026-09-29"
+description: "Before building a script to save myself some work, I probably should have asked who was using the report."
+---
+
+I once got quite excited about automating a weekly client report. This was going to save me time, reduce manual work, and give me an excuse to spend an afternoon writing code instead of putting screenshots in a document. I was particularly interested in that last benefit.
+
+The report had started during a website rebuild. Every Friday, I sent screenshots of the pages we'd changed, with a few notes explaining what was ready for review. The client could look through them without wandering around a half-finished staging site and accidentally reviewing the one page I was hoping they wouldn't open yet.
+
+It was useful. We caught things early, the client could share progress internally, and I had a record of what we'd shown them. Then we launched the site.
+
+I kept sending the report.
+
+There was still some follow-up work, so continuing it made sense for a while. Eventually, though, most weeks involved taking screenshots of pages that looked very much like the pages I'd sent the previous Friday. Sometimes the main achievement was that the date at the top of the document was correct.
+
+Preparing it wasn't difficult. It was just tedious enough that I started working out how a script could open each page and assemble the screenshots into a document. I'd need to handle the cookie banner so it didn't feature in every image, and wait for the fonts to load before taking the captures. Getting those consistent on mobile would take some work too. A small internal tool, which is how I liked to describe a project before finding out how big it was.
+
+I was discussing this with another developer when they asked what the client did with the report. I explained how I made it, which they patiently let me finish before asking again. That was uncomfortable, mostly because I had a much better answer for which browser automation library I might use than for why the finished document needed to exist.
+
+So I asked the client which parts they were still using. I tried to keep the question ordinary. I didn't need to announce an investigation into whether we'd all been wasting our time. I wanted to know whether the report still helped, now that the site was live.
+
+They'd used the screenshots during the rebuild to get approval from someone who wasn't attending our calls. That person had signed off. The client now checked changes directly on the site. They'd assumed I needed to keep sending the document for my own records.
+
+We'd been very considerate about continuing a process each of us thought belonged to the other.
+
+There was one thing they still wanted: a note when a requested change was ready to check. We agreed I'd keep sending those as the work was finished, with a link to the relevant page. I confirmed that the Friday document would end and checked that nobody else on their side was depending on it. The next Friday, I closed the recurring task.
+
+I wish I could say my immediate reaction was pure relief. Part of me was disappointed that I no longer had a reason to build the script. I'd already thought of a few things it could do.
+
+That was the embarrassing part. I'd spent so long treating the report as a fixed requirement that improving its production felt more available than questioning its purpose. The automation problem was interesting. Asking someone about a document was a short email.
+
+I'm still in favor of automating boring work. But this gave me a reason to ask a question before opening an editor: what happens after I send this?
+
+Sometimes there's a good answer. Someone may use the attachment in a meeting I don't attend, or need a dated copy they can refer to later. A report can be useful without generating a reply every time. I wouldn't quietly stop sending one and treat the absence of complaints as proof.
+
+In this case, a conversation settled it. Nobody had to defend the original request, which had helped us finish the site. We only needed to agree that we'd finished the part it was for.
+
+I closed the automation ticket too, although I left my notes in it. Apparently I was willing to let go of the report before I was willing to let go of my excellent plan for making it.
+
+---
+
+*I explore how to reconsider commitments like this in [Default: No](/no), which is available for early readers.*
+
