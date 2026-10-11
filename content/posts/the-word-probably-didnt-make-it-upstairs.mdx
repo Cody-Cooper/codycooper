@@ -1,0 +1,39 @@
+---
+title: "The Word Probably Didn't Make It Upstairs"
+date: "2026-10-03"
+description: "You send a working theory. Three forwarded messages later, someone is announcing a cause. Here's how to keep uncertainty attached to an update."
+---
+
+Suppose you're looking into a problem on a client's website. Some customers can't finish checking out, and the errors started shortly after a release. Your boss asks what's going on, so you send a quick message: "It probably has something to do with the release. We're checking that now."
+
+That's a reasonable place to start looking. You have a time, a change, and a problem that might be connected to it. You don't have a cause yet, which is why you included the word "probably."
+
+Your boss sends an update to the account manager, who sends one to the client. A little later, you get copied on an email explaining that the team has identified the cause and is working on a fix. Apparently the investigation is going considerably better in the email than it is at your desk.
+
+You scroll back through the messages. Nobody appears to have made anything up on purpose. Your boss shortened your explanation. The account manager shortened it again. Somewhere along the way, "probably" disappeared, and "checking" became "fixing."
+
+Now the client wants to know when the fix will be ready. Fair question, given what they've been told. You're still trying to find out whether you're looking at the right thing.
+
+This is an awkward time to explain the difference between a working theory and a confirmed cause. From the client's end, the team knew what was wrong a few minutes ago. Now, somehow, it knows less. You're answering questions about the earlier email while you're trying to investigate.
+
+It's tempting to solve this by writing a much longer update. Include every detail, add the relevant logs, make absolutely sure nobody can misunderstand you. The resulting message may be very precise. It may also be the reason your boss decides to summarize it.
+
+Shortening an update is useful. Your client doesn't need everything in the development chat, and your boss shouldn't have to forward a transcript whenever someone asks a question. But the difference between a suspicion and a finding needs to survive the shortening. It changes what people can reasonably do with the information.
+
+In this example, I'd send something like: "Checkout errors began after today's release. We haven't confirmed the cause. We're checking whether the release is responsible and whether reverting it would help."
+
+That still fits in a message. It gives the timing, puts a limit on what the timing tells us, and says what the team is doing. Someone can copy the whole thing without having to interpret how much confidence I meant to put into "probably."
+
+The placement matters, too. If the first paragraph says the release caused the problem and the last sentence explains that this is only a theory, you've given the person skimming your update two different answers. The confident one is easier to remember. Keep the qualification next to the claim it belongs to, even if that makes the sentence a little less tidy.
+
+Of course, careful wording doesn't give you control of everybody else's inbox. An update can still come back to you wearing a level of certainty you don't recognize. At that point, correcting the developer chat won't help the client who has already read something else.
+
+I'd reply on the thread with the mistaken update: "A correction to the cause mentioned below: the release is still a working theory. We haven't confirmed it. We're checking it now and will update this thread when we have a result."
+
+There's no need to turn that into an investigation of who dropped which word. You can sort out the handoff afterward. For now, the person waiting on the fix needs to know that you're still finding the cause, and anyone making plans from the earlier email needs the correction too.
+
+Once you've done that, give the people sending updates one current version to work from. A shared note or the latest message in an agreed thread is enough. If each person is piecing together the situation from whichever chat they happened to read, even careful people can end up telling different stories.
+
+Maybe the release does turn out to be responsible. You can say so when you know. If it doesn't, you can move on to the next explanation without also having to retract an answer the client thought was settled. Either way, the next question they ask has a better chance of being one you can actually answer.
+
+*I cover communicating uncertainty during cyber incidents in [Talking To Your Boss](https://www.amazon.com/dp/B0GHTGTZ5Z).*
