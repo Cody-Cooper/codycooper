@@ -1,0 +1,35 @@
+---
+title: "The Instructions Make Sense Until You Need Them"
+date: "2026-10-15"
+description: "Six months after setting something up, a note that says restart the service can raise an unreasonable number of questions."
+---
+
+Somewhere in a setup guide, there's a sentence that says to restart the service. If you wrote that sentence ten minutes after installing everything, it probably seemed thorough. You knew which service, where it was running, and how to restart it. Writing all of that down would have felt like explaining how doors work.
+
+Six months later, those would be excellent things to know.
+
+Picture a small home server project. You get an application running, sort out a couple of settings, and make a few notes before moving on. The notes include the commands that worked and a link to the guide you followed. This is already more responsible than trusting yourself to remember everything, so you're entitled to feel pretty good about it.
+
+Then something stops working. You open the notes and discover that they were written for a person who had just spent four hours understanding the setup. Unfortunately, that person is no longer available. You have the same name and access to the same computer, but that's about as far as the resemblance goes.
+
+The first instruction says to edit the configuration file. There are two files with plausible names. One is in the application folder. The other is in a folder called old, which seems decisive until you notice that it was modified more recently. You remember having a reason for this. You would be willing to trade the memory of several passwords you no longer use for that reason.
+
+The annoying part is that the notes aren't necessarily wrong. They might describe exactly what you did. They just leave out everything you knew while doing it.
+
+A copied command is a good example. It can preserve the part you were least likely to remember, including some punctuation you still don't entirely trust. But where do you run it? On your laptop? On the server? Inside the application container? If you were already in the right place when you wrote the note, the command looked complete.
+
+There can also be a sentence that says to change a setting, with no explanation of why. Maybe the default caused a problem. Maybe an old guide told you to change it. Maybe you tried it while troubleshooting and never put it back. Now you have to decide whether to keep a mysterious choice or undo it without knowing what it fixed. Neither option makes you feel especially qualified to be in charge of the server.
+
+A short reason beside the setting would help more than another screenshot of the settings page. Even a note that says you tried something and don't know whether it helped is useful. At least you won't mistake an experiment for a requirement.
+
+It would be easy to turn this into an argument for documenting every click. That sounds exhausting, and it gives you a much larger document to keep current. The useful additions are usually closer to the questions you ask when you get stuck: which file, which machine, what should happen next?
+
+That last question deserves a little space. If a command finishes silently, say so. If the application takes a minute to become available, mention that. Otherwise, a perfectly successful step can leave you wondering whether to wait, try again, or begin making unrelated changes. A good set of notes lets you recognize when things are going well enough to leave them alone.
+
+You can find some of these gaps by opening a fresh terminal and following your own instructions. The moment you do something from memory that isn't in the document, you've found a missing step. Add it while the answer is still obvious. No need to turn it into a tutorial on the entire operating system.
+
+In our hypothetical server project, that might mean adding the full path to the active file and explaining why the other copy exists. The folder can still be called old. Nobody has to become a completely different person this afternoon.
+
+Then, the next time something breaks, you can get on with fixing it instead of trying to establish what you meant by "the usual way."
+
+*You can find my occasional notes on work and deliberate decisions in [the newsletter](/newsletter).*
