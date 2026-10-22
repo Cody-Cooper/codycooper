@@ -1,0 +1,43 @@
+---
+title: "The Red Dot Has Lost Its Authority"
+date: "2026-10-22"
+description: "Every alert on the dashboard was urgent, which made ignoring all of them surprisingly easy."
+---
+
+I once worked on a client dashboard that had three red status badges. One meant a data import had failed. Another meant a connection needed to be renewed. The third meant someone hadn't finished setting up an account.
+
+Three seemed manageable. Red meant there was something to deal with, and the badges gave people a place to start.
+
+Then the dashboard grew.
+
+A new feature needed a badge when a report was ready. Another needed one when a user hadn't added a profile photo. Somebody wanted a warning when an integration hadn't been used recently, although nobody was quite sure whether that was a problem. Each request made sense while we were discussing it by itself. Attention was helpful, red got attention, and I knew how to make a red circle.
+
+After a while, opening the dashboard felt like arriving late to a meeting where everyone was already disappointed in you.
+
+The page had red dots in the navigation, red counts on the cards, and red messages inside the cards in case the dots had been too subtle. A person could have a failed import sitting next to a reminder to upload a logo, both presented with roughly the same emotional volume.
+
+During a review, someone shared their screen and asked which alert they were supposed to handle first. That was a fair question. There were seven of them, and the interface's official position was that all seven were red.
+
+We had built a dashboard that was very good at demanding attention and surprisingly bad at helping someone decide what to do.
+
+The obvious fix would have been to rank the alerts. Unfortunately, "priority" is one of those words that sounds precise right up until several people have to agree on it. A missing profile photo was important to the person responsible for profile photos. An expired connection was important to the person who would get a phone call when the next import failed. The report-ready badge was mostly excited to be included.
+
+So we stopped asking whether each item mattered. They all mattered to somebody. We asked what happened if the user ignored it until tomorrow.
+
+That changed the conversation. A failed import could leave someone working from old data. An expired connection could stop the next import entirely. A missing logo would remain a missing logo, bravely creating no additional problems overnight.
+
+We reserved red for the things that could block work or needed a decision soon. Routine reminders moved closer to the place where someone could fix them. A completed report showed up in the report list, where people looking for reports had already demonstrated a suspicious amount of interest in reports. Some messages disappeared because nobody could explain what action they wanted the user to take.
+
+The dashboard became quieter. Nothing important had been hidden. We had just stopped making every piece of unfinished business announce itself from the lobby.
+
+This is hard to maintain because every new request arrives alone. Nobody asks to make the whole screen noisy. They ask for one badge, one notification, or one small reminder that will help people notice their feature. The cost only appears later, when a user has to sort all those helpful interruptions into an order the interface declined to provide.
+
+Phones work the same way. A red dot might mean someone is waiting for a reply, a package has moved from one building to another, or an app would like you to know it has redesigned its rewards program. The visual language is nearly identical even when the consequences are nowhere close.
+
+I don't think the answer is to make every notification calm and tasteful. Some things should interrupt. If a payment failed or a system stopped updating, making that message easy to overlook would be a strange victory for visual restraint. But the louder signal only works when the quieter options get used too.
+
+On the dashboard, the failed import kept its red badge. The logo reminder did not. The next time the import broke, the person reviewing the page knew where to look without first clearing six tiny accusations from the navigation.
+
+The red dot had a job again.
+
+*For occasional notes on work, technology, and deliberate decisions, you can join [my newsletter](/newsletter).*
