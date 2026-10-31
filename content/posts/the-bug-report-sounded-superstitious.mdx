@@ -1,0 +1,39 @@
+---
+title: "The Bug Report Sounded Superstitious"
+date: "2026-10-31"
+description: "The checkout only failed after searching, going back, and clicking twice. Naturally, I assumed half of that was irrelevant."
+---
+
+Some bug reports arrive with a clean list of steps. Others sound like instructions for summoning something.
+
+One client told me their checkout stopped working if they searched for a product, opened it, went back to the results, and then clicked the purchase button twice. If they reached the same product through the category menu, everything worked. They had tested this several times and apologized for how ridiculous it sounded.
+
+I told them I would look into it, which is the professional version of saying I planned to ignore at least half of those details.
+
+The second click seemed plausible. Double clicks can create duplicate requests, and duplicate requests are a fine way to make an otherwise ordinary afternoon more expensive. The search and back-button portion sounded like the sort of ritual people develop after a machine behaves badly once.
+
+I opened the product directly and clicked twice. It worked. I found it through the category menu and clicked twice. Still worked. Then I used search, opened the product, went back, opened it again, and clicked twice.
+
+The button stopped responding.
+
+This was good news in the limited sense that I was no longer investigating a ghost. It was also bad news in the broader sense that the ghost now had reproducible steps.
+
+The page looked identical in every case. Same product, same button, same price. Underneath, it had arrived there through two different paths. The category menu loaded a fresh product page. The search results kept part of the previous page alive so the browser could return to the same results and scroll position. When I opened the product again, a second product panel appeared directly on top of the first. Every pixel lined up, so the two panels looked like one.
+
+The first click added the item and closed the top panel. The second landed on the older panel underneath, whose button was no longer connected to the current cart. The button had not become unresponsive. I was clicking an abandoned copy of it.
+
+The client had given me the exact route to the problem. I had mentally rewritten their report into something more sensible because sensible details are easier to debug. Search probably did not matter. Going back probably did not matter. Clicking twice was the part that looked like software.
+
+Computers are rarely impressed by what looks relevant to a person. They will happily carry a stale bit of page state through six screens, wait for the right click, and then behave as though this was the obvious conclusion all along.
+
+That is why the strange details in a bug report are often the useful ones. “It only happens after lunch” may mean a session expires at noon. “It works when my coworker does it” may mean the accounts have different permissions. “I have to open the page twice” may mean the first visit creates something the second visit expects to find. The user may not know the mechanism, but they can still describe the path.
+
+Of course, not every detail survives contact with the code. People remember steps out of order, combine two problems, and occasionally insist the weather is involved. Developers do this too. Each observation can remain a clue until the full sequence has been tested.
+
+I removed the duplicate panel and changed the page so returning from search could not create another copy. Then I followed the client's full set of steps several more times, including the parts I had originally demoted to ceremony. Checkout worked, the item appeared once, and the button went back to receiving an appropriate amount of help.
+
+The next time a bug report sounded superstitious, I tried to resist cleaning it up before reproducing it. There would be time to decide which details were irrelevant after the computer had been given a chance to embarrass me.
+
+It usually does not need very long.
+
+*For occasional notes about development, work, and the strange ways simple things become complicated, you can join [my newsletter](/newsletter).*
