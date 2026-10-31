@@ -18,9 +18,9 @@ The button stopped responding.
 
 This was good news in the limited sense that I was no longer investigating a ghost. It was also bad news in the broader sense that the ghost now had reproducible steps.
 
-The page looked identical in every case. Same product, same button, same price. Underneath, it had arrived there through two different paths. The category menu loaded a fresh product page. The search results kept part of the previous page alive so the browser could return to the same results and scroll position. When I opened the product again, one piece of the purchase code was added a second time.
+The page looked identical in every case. Same product, same button, same price. Underneath, it had arrived there through two different paths. The category menu loaded a fresh product page. The search results kept part of the previous page alive so the browser could return to the same results and scroll position. When I opened the product again, a second product panel appeared directly on top of the first. Every pixel lined up, so the two panels looked like one.
 
-The first click did what it was supposed to do. The second click triggered two copies of the same handler, which disagreed about whether the item had already been added. The button had not become unresponsive. It was receiving too much help.
+The first click added the item and closed the top panel. The second landed on the older panel underneath, whose button was no longer connected to the current cart. The button had not become unresponsive. I was clicking an abandoned copy of it.
 
 The client had given me the exact route to the problem. I had mentally rewritten their report into something more sensible because sensible details are easier to debug. Search probably did not matter. Going back probably did not matter. Clicking twice was the part that looked like software.
 
@@ -30,7 +30,7 @@ That is why the strange details in a bug report are often the useful ones. “It
 
 Of course, not every detail survives contact with the code. People remember steps out of order, combine two problems, and occasionally insist the weather is involved. Developers do this too. Each observation can remain a clue until the full sequence has been tested.
 
-I removed the duplicate handler and changed the page so returning from search could not attach another copy. Then I followed the client's full set of steps several more times, including the parts I had originally demoted to ceremony. Checkout worked, the item appeared once, and the button went back to receiving an appropriate amount of help.
+I removed the duplicate panel and changed the page so returning from search could not create another copy. Then I followed the client's full set of steps several more times, including the parts I had originally demoted to ceremony. Checkout worked, the item appeared once, and the button went back to receiving an appropriate amount of help.
 
 The next time a bug report sounded superstitious, I tried to resist cleaning it up before reproducing it. There would be time to decide which details were irrelevant after the computer had been given a chance to embarrass me.
 
