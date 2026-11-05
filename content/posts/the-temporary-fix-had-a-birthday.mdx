@@ -1,0 +1,39 @@
+---
+title: "The Temporary Fix Had a Birthday"
+date: "2026-11-05"
+description: "A CSS workaround was supposed to last two weeks. More than a year later, it was still waiting for someone to tell it the emergency was over."
+---
+
+I once found a comment in a client’s code that said, “TODO: remove after the new header ships.”
+
+The comment was fourteen months old. The new header had never shipped. At this point, the temporary fix had been with the site longer than several people on the project, and unlike most of us, it had never asked for a day off.
+
+It started with a promotional banner. The client needed a short message at the top of the site for a campaign, and they needed it before the weekend. On desktop, the banner sat above the navigation and behaved itself. On mobile, it pushed the menu halfway down the screen, where the logo, search icon, and account button began negotiating for territory.
+
+The site was already getting a redesigned header, so rebuilding the old one made little sense. I added a small CSS adjustment that gave the banner enough room, left the comment, and opened a ticket to remove it once the new header went live. The campaign launched on time. Everyone was happy, including me, which should have made me suspicious.
+
+The redesign slipped by a month. Then another project became more urgent. Eventually the new header stopped appearing in planning conversations altogether. The promotional banner stayed because somebody found a second use for it, then a third. It announced a sale, a shipping delay, and once, for reasons I never fully understood, a change to the rewards program that required twelve words and two footnotes.
+
+Meanwhile, the workaround became part of the site.
+
+I found it much later while looking into a narrow strip of empty space above a page on certain phones. The banner had been turned off, but one of the classes used to make room for it was still present. The page was honoring an agreement with an element that no longer existed.
+
+The fix itself was easy. Finding out whether I was allowed to remove it took longer.
+
+The ticket said the code depended on the new header. The new header ticket was closed without being built. Nobody remembered whether the banner might come back. A later stylesheet included another adjustment that assumed the extra space would be there. Deleting four lines of CSS required enough archaeology to qualify for a small brush and a grant.
+
+This is how temporary fixes become permanent. They rarely seize control of a codebase in one dramatic move. They solve a real problem, work well enough, and wait. The deadline passes. The person who wrote the comment moves to something else. Six months later, the warning reads less like an instruction and more like a note discovered in a bottle.
+
+Calling something temporary does not give it an expiration date. It needs a specific reason to be removed and, ideally, a person or event that will bring it back into view. “Remove after launch” sounds clear until the launch changes. “Remove when the replacement ships” fails when the replacement does not. A ticket helps, but only if somebody still owns the ticket after the emergency has become an ordinary Tuesday.
+
+I have gotten more careful about these fixes since then. If a workaround has to stay, I try to record what problem it solves, what will break if it disappears too early, and what condition makes it safe to remove. If there is no realistic removal condition, I stop calling it temporary and clean it up as part of the system we actually have.
+
+That last option is less satisfying. Developers like to imagine the proper solution is just over the horizon, waiting for a quieter sprint and a tasteful amount of refactoring. Sometimes the honest answer is that the workaround won. It deserves a sensible name, a test if the behavior matters, and documentation that does not depend on a canceled redesign from last year.
+
+I removed the abandoned class, simplified the later stylesheet, and updated the banner so it could appear without leaving a phantom version of itself behind. The empty strip disappeared. Nothing else broke, at least during the amount of testing one can do before becoming convinced that CSS is watching.
+
+Then I closed the old ticket. It had been open for 423 days.
+
+I considered buying it a cake.
+
+*For occasional notes about development, work, and small problems that become fixtures, you can join [my newsletter](/newsletter).*
