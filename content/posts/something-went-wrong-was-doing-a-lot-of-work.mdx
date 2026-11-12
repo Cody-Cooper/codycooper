@@ -1,0 +1,37 @@
+---
+title: "“Something Went Wrong” Was Doing a Lot of Work"
+date: "2026-11-12"
+description: "The form knew exactly why it had rejected a file. The person using it got four words and another chance to guess."
+---
+
+A client once sent me a screenshot of a form with a red message at the top: “Something went wrong. Please try again.”
+
+I recognized it immediately because I had written it.
+
+There is a particular kind of betrayal in seeing your own error message returned to you as evidence. I had added it months earlier as a safe fallback. If the form failed in a way we had not anticipated, the site would show a clean sentence instead of an alarming block of server text. This felt thoughtful at the time.
+
+The person in the screenshot was trying to upload a PDF. They selected the file, filled out the rest of the form, and clicked submit. The form rejected it. They tried again, which was a reasonable response to being specifically asked to try again. It failed the same way.
+
+By the time the screenshot reached me, they had tried four times and emailed the client to ask whether the website was broken.
+
+The website was not broken in any interesting sense. The PDF was larger than the upload limit. The server knew this, recorded it, and sent back an error that identified the problem. The front end received that useful information and replaced it with my four-word contribution to customer service.
+
+I had built the message to cover unknown failures. Over time, it had become the answer for an oversized file, an unsupported format, and a connection that dropped halfway through submission. The website had four words for all of them and remained committed to its position.
+
+The message was technically accurate. Something had gone wrong. It was also about as useful as a smoke alarm that announces, “There is a situation somewhere.”
+
+Generic errors are tempting because the alternative can get messy. Every form has more failure paths than the design suggests. The mockup usually includes a tidy success state and perhaps one example of a required field. It rarely includes what happens when a person uploads a document saved by software nobody on the project has heard of, loses service during submission, or returns to a tab that has been open since breakfast.
+
+There are also good reasons to hide technical detail. A visitor does not need a database error, an internal path, or the name of a service that timed out. Those details confuse people and may reveal things the application should keep to itself. Hiding the machinery does not require hiding the remedy.
+
+We changed the form so known problems produced useful messages. An oversized file displayed the limit and asked for a smaller file. An unsupported format listed the accepted ones. If the connection failed, the form said the submission had not been received and suggested trying again once the connection was stable. Failures we had not anticipated kept the generic message, while the application logged enough information for us to investigate.
+
+The fix was not difficult. Most of the work involved following the form through each failure path and deciding what the person could do next. That had not felt like part of building the form when I first wrote it. I had treated errors as the part after the interface, even though they were often the moment when someone needed the interface most.
+
+Once the new messages were live, the client stopped getting emails that began with “Your website won’t let me.” People still uploaded files that were too large. They simply knew that was the problem and could make the file smaller without opening a support case or developing a personal theory about the website.
+
+I still use a generic fallback. Unknown failures exist, and pretending every problem can be translated perfectly would create a different kind of fiction. I just try to make sure the fallback is the last option instead of the entire error-handling strategy.
+
+Now, when a form fails, I want the message to answer the question the person is already asking: what can I do next? Admitting that something went wrong is useful only when the site has nothing more specific to say.
+
+*For occasional notes about development, work, and the parts of software that looked simple in the mockup, you can join [my newsletter](/newsletter).*
