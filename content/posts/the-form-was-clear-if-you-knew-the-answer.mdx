@@ -1,0 +1,51 @@
+---
+title: "The Form Was Clear If You Knew the Answer"
+date: "2026-11-21"
+description: "A clean client form, one vague field, and the trouble with designing an interface for people who were in the meeting."
+---
+
+Years ago, I worked on a client portal with a form that had received a suspicious amount of attention. The spacing was consistent. The error messages appeared in the right place. The submit button knew when to become disabled, which is a small thing that can consume an afternoon if you are sufficiently committed to doing it properly.
+
+The form looked good on a laptop, a phone, and the narrow browser window developers use when they want to call something responsive without standing up to find another device.
+
+Then someone tried to use it.
+
+The message from the client was short: “What goes in Reference?”
+
+I opened the page and looked at the field labeled **Reference**. It was directly below the address and directly above the notes. Its meaning had been discussed in at least two meetings. I had built the thing myself.
+
+I had no idea.
+
+This was mildly embarrassing, but it was also useful. A vague label had survived design review, development, testing, and a client walkthrough because everyone involved had access to the same background information. We all knew what the form was for. That knowledge did a lot of unpaid work.
+
+The person filling it out had the form.
+
+“Reference” could have meant an account number, a purchase order, the name of the employee who requested the work, or a brief citation in MLA format. The last option was unlikely, although the field was technically large enough.
+
+We went back through the original notes. The client wanted a purchase order number when the customer’s company required one. It was optional. Some customers would never have one, and others would be unable to submit an invoice without it. The field had a specific purpose, a condition, and a consequence. Somehow, all of that had been compressed into one confident word.
+
+I changed the label to “Purchase order number,” marked it optional, and added a short line explaining who needed to fill it out. The form got a little taller. It also stopped asking strangers to reconstruct a meeting they had not attended.
+
+Front-end work includes plenty of problems that are satisfying in the usual developer way. You make the layout behave at an unreasonable width. You remove a request that fires twice. You find the one stacking context responsible for placing a dropdown behind a footer, which feels less like programming and more like settling a property dispute between rectangles.
+
+But some of the harder problems are ordinary sentences sitting next to ordinary controls.
+
+A developer can test whether a field accepts the right number of characters. We can verify that the value reaches the database and returns on the confirmation page. None of that tells us whether a customer knows what the field is asking before they type something into it.
+
+That gap is easy to miss because familiarity feels a lot like clarity. Once you know what a page does, your brain starts filling in the missing instructions. A label looks obvious because you remember the ticket. A button looks well placed because you know where you put it. The interface receives credit for information you brought with you.
+
+The usual response is to add help text everywhere, which creates a different problem. A form can become so eager to explain itself that it resembles a rental agreement. Users should not need to read a paragraph before entering a phone number. The job is to notice where the interface depends on private context and spend words there.
+
+The fix might be a longer label, an example inside the field, or a sentence explaining why the information is needed. Sometimes the field should not exist at all. I have a particular affection for that last fix because it improves the experience and reduces the amount of code I am responsible for, a rare alignment of civic virtue and self-interest.
+
+There is a temptation to judge an interface by how little it says. Clean pages photograph well. They look calm in a presentation. Every label fits on one line, and no untidy explanation interferes with the whitespace.
+
+The customer is not grading the whitespace. They are trying to finish something.
+
+A good interface can be simple and still explain itself. It gives people the information they need at the point where they need it, then gets out of the way. If a field only makes sense to the people who named it, the design is asking the user to supply the missing documentation.
+
+Our revised form was slightly less elegant. The label wrapped on a small screen, and the helper text pushed the submit button down by a few pixels. Nobody sent another message asking what “Reference” meant.
+
+I liked it better that way. The page was doing its own work.
+
+*For more notes about software, work, and the occasional field that should have been deleted, you can join [my newsletter](/newsletter).*
