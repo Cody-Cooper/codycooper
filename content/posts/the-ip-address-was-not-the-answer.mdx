@@ -1,0 +1,41 @@
+---
+title: "The IP Address Was Not the Answer"
+date: "2026-11-24"
+description: "A technical update can be completely accurate and still leave leadership without the one thing they asked for: what to do next."
+---
+
+There is a particular kind of meeting where a leader asks a six-word question and receives an answer containing an IP address.
+
+“Are customers affected?”
+
+The responder looks at the notes. There was unusual traffic from an external address. Authentication requests increased. Several logs are still being reviewed. The team blocked the address and started checking the affected server.
+
+Every part of that answer may be accurate. The leader is still waiting.
+
+This is a hypothetical incident, but the conversation is familiar because technical people are trained to show their work. We trust evidence. If somebody asks what happened, we reach for the alert, the process tree, the packet capture, or the command that confirmed the finding. These details are how we prove that the assessment did not arrive by séance.
+
+The person asking about customers is trying to make a different decision. They may need to warn support staff, approve an outage, call legal, or tell their own boss whether the problem is likely to get worse. An IP address can matter enormously to the investigation and still tell them none of that.
+
+The useful answer might be: “Some customers are having trouble signing in. We have not found evidence that anyone accessed their accounts. We blocked the traffic we were investigating, and the team is checking whether login failures continue. I’ll update you in thirty minutes.”
+
+Now the leader has something to work with. Customers are affected, but the known impact is limited to access. Account compromise has not been found, though the investigation is still open. The team has acted, and another answer is coming at a specific time.
+
+The technical details belong in the follow-up, where they can help. Explain the authentication traffic when the leader asks what caused the failures, and give the security lead the source address. When an analyst joins the call to help investigate, open the logs and enjoy yourselves. The first answer only needs to finish the decision in front of the room.
+
+This can feel like oversimplifying, especially when the details are the result of hours of work. You found the suspicious connection. You traced it to a service. You compared timestamps across three systems and finally got two clocks to admit they were describing the same minute. Reducing all of that to “some customers cannot sign in” may feel like leaving out the impressive part.
+
+A briefing has to help someone else decide what to do. It does not document how hard the team worked.
+
+That does not mean leadership wants cheerful vagueness. “We are looking into it” is short, but it leaves every important question open. A useful summary carries the uncertainty with it. Say what is affected, what is still unknown, what the team is doing, and when the picture should improve. If the scope is unclear, say that. If the evidence only supports a working theory, do not promote it because the room would prefer a finding.
+
+The difficult part is usually deciding where the technical chain ends and the operational answer begins. A suspicious process matters because it can access a database. The database matters because it holds customer records. The customer records matter because exposure could require notification and change how the organization responds. The briefing starts near that end of the chain. The investigation can keep working backward through every detail that got you there.
+
+Different listeners may need different stopping points. A technical director may want one layer beneath the impact. Legal may care less about the tool involved and more about what data was reachable. A senior leader may only need to know whether people can work, whether anyone must be notified, and whether the team needs help. Giving all of them the same answer is efficient in the way that mailing everyone the same pair of shoes is efficient.
+
+Before a briefing, take the detail you most want to share and ask what decision it supports. If the answer is clear, connect the two. If it is not, keep the detail in your notes until somebody asks for it.
+
+The IP address may be the clue that solves the incident. It still cannot answer whether customers are affected.
+
+Someone in the room has to do that part.
+
+*I wrote [Talking To Your Boss](https://www.amazon.com/dp/B0GHTGTZ5Z) for technical leaders who need to turn incident details into updates people can use.*
